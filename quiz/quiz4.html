@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 4: Formen und Klassifikation | Parodontose</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        :root {
+            --mlpurple: #3333B2;
+            --mlblue: #0066CC;
+            --quiz-accent: #8b5cf6;
+            --quiz-light: #ede9fe;
+            --correct: #22c55e;
+            --correct-bg: #dcfce7;
+            --incorrect: #ef4444;
+            --incorrect-bg: #fee2e2;
+            --bg: #f6f8fa;
+            --card-bg: #ffffff;
+            --text: #24292e;
+            --text-secondary: #586069;
+            --border: #e1e4e8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.4;
+            min-height: 100vh;
+        }
+
+        .nav {
+            background: linear-gradient(135deg, var(--mlpurple), var(--mlblue));
+            color: white;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-title { font-weight: 600; font-size: 14px; }
+        .nav-links { display: flex; gap: 16px; }
+        .nav-links a { color: white; text-decoration: none; font-size: 12px; opacity: 0.9; }
+        .nav-links a:hover { opacity: 1; }
+
+        .quiz-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 12px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 0 4px;
+        }
+        .quiz-title { font-size: 16px; font-weight: 600; color: var(--mlpurple); }
+        .quiz-stats {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+        }
+        .stat-badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        .stat-progress { background: var(--quiz-light); color: var(--quiz-accent); }
+        .stat-score { background: var(--correct-bg); color: var(--correct); }
+
+        .progress-bar-container {
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-bottom: 12px;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--quiz-accent);
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        /* Three-column layout */
+        .questions-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            min-height: 280px;
+        }
+
+        .question-card.answered { opacity: 0.7; }
+
+        .question-card.correct-card {
+            border: 2px solid var(--correct);
+            background: linear-gradient(to bottom, var(--correct-bg), var(--card-bg));
+        }
+
+        .question-card.incorrect-card {
+            border: 2px solid var(--incorrect);
+            background: linear-gradient(to bottom, var(--incorrect-bg), var(--card-bg));
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .q-number {
+            background: var(--quiz-light);
+            color: var(--quiz-accent);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .q-status { font-size: 14px; }
+
+        .q-text {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            flex-grow: 0;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-grow: 1;
+        }
+
+        .option-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            min-height: 44px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--card-bg);
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .option-btn:hover:not(.disabled) {
+            border-color: var(--quiz-accent);
+            background: var(--quiz-light);
+        }
+
+        .option-btn.correct {
+            border-color: var(--correct);
+            background: var(--correct-bg);
+        }
+
+        .option-btn.incorrect {
+            border-color: var(--incorrect);
+            background: var(--incorrect-bg);
+        }
+
+        .option-btn.disabled { cursor: default; }
+
+        .option-letter {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 10px;
+            flex-shrink: 0;
+        }
+
+        .option-btn.correct .option-letter {
+            background: var(--correct);
+            color: white;
+        }
+
+        .option-btn.incorrect .option-letter {
+            background: var(--incorrect);
+            color: white;
+        }
+
+        .option-text { flex: 1; }
+
+        .feedback {
+            margin-top: 8px;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            line-height: 1.4;
+            display: none;
+        }
+
+        .feedback.show { display: block; }
+        .feedback.correct { background: var(--correct-bg); color: #166534; }
+        .feedback.incorrect { background: var(--incorrect-bg); color: #991b1b; }
+
+        /* Results */
+        .results-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 32px;
+            text-align: center;
+            max-width: 500px;
+            margin: 40px auto;
+            display: none;
+        }
+        .results-card.show { display: block; }
+        .results-icon { font-size: 48px; margin-bottom: 8px; }
+        .results-score { font-size: 36px; font-weight: 700; color: var(--quiz-accent); }
+        .results-label { font-size: 14px; color: var(--text-secondary); margin-bottom: 16px; }
+        .results-grade {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .grade-a { background: #dcfce7; color: #166534; }
+        .grade-b { background: #dbeafe; color: #1e40af; }
+        .grade-c { background: #fef3c7; color: #92400e; }
+        .grade-d { background: #fed7aa; color: #9a3412; }
+        .grade-f { background: #fee2e2; color: #991b1b; }
+
+        .results-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+        }
+        .btn-primary { background: var(--quiz-accent); color: white; }
+        .btn-primary:hover { background: #7c3aed; }
+        .btn-secondary { background: var(--card-bg); color: var(--text); border: 1px solid var(--border); }
+
+        /* Next button container */
+        .next-btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        .btn-next {
+            padding: 10px 32px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            background: var(--quiz-accent);
+            color: white;
+            transition: all 0.2s;
+            display: none;
+        }
+        .btn-next:hover { background: #7c3aed; transform: scale(1.02); }
+        .btn-next.show { display: inline-block; }
+        .btn-next:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        @media (max-width: 900px) {
+            .questions-row { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .questions-row { grid-template-columns: 1fr; }
+            .question-card { min-height: auto; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-title">Quiz 4: Formen und Klassifikation</div>
+        <div class="nav-links">
+            <a href="../index.html">Übersicht</a>
+            <a href="https://github.com" target="_blank">GitHub</a>
+        </div>
+    </nav>
+
+    <main class="quiz-container">
+        <div class="quiz-header">
+            <div class="quiz-title">Quiz 4: Formen und Klassifikation</div>
+            <div class="quiz-stats">
+                <span class="stat-badge stat-progress" id="progressBadge">0/25</span>
+                <span class="stat-badge stat-score" id="scoreBadge">Ergebnis: 0</span>
+            </div>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+        </div>
+
+        <div class="questions-row" id="questionsRow"></div>
+
+        <div class="next-btn-container">
+            <button class="btn-next" id="nextBtn" onclick="loadNextQuestions()">Nächste</button>
+        </div>
+
+        <div class="results-card" id="resultsCard">
+            <div class="results-icon" id="resultsIcon"></div>
+            <div class="results-score" id="resultsScore"></div>
+            <div class="results-label">Richtige Antworten</div>
+            <div class="results-grade" id="resultsGrade"></div>
+            <div class="results-buttons">
+                <button class="btn btn-primary" onclick="restartQuiz()">Nochmal versuchen</button>
+                <a href="../index.html" class="btn btn-secondary">Übersicht</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const quizData = {
+            questions: [
+                {
+                    "id": 1,
+                    "question": "Welches Stadium der Parodontitis nach der 2018-Klassifikation ist durch einen klinischen Attachmentverlust (CAL) von 1-2 mm charakterisiert?",
+                    "options": {
+                        "A": "Stadium I: Initiale Parodontitis",
+                        "B": "Stadium II: Moderate Parodontitis",
+                        "C": "Stadium III: Schwere Parodontitis",
+                        "D": "Stadium IV: Schwere Parodontitis mit Potential für Zahnverlust der gesamten Dentition"
+                    },
+                    "correct": "A",
+                    "explanation": "Stadium I bezeichnet die initiale Parodontitis mit einem CAL von 1-2 mm und einem radiologischen Knochenabbau im koronalen Drittel (<15%). Es handelt sich um das früheste Stadium mit dem geringsten Attachmentverlust."
+                },
+                {
+                    "id": 2,
+                    "question": "Ein Patient zeigt einen CAL von 4 mm und einen Knochenabbau von 20%. Welches Stadium liegt vor?",
+                    "options": {
+                        "A": "Stadium I",
+                        "B": "Stadium II",
+                        "C": "Stadium III",
+                        "D": "Stadium IV"
+                    },
+                    "correct": "B",
+                    "explanation": "Stadium II (Moderate Parodontitis) ist definiert durch einen CAL von 3-4 mm und einen radiologischen Knochenabbau von 15-33%. Der Patient erfüllt beide Kriterien für Stadium II."
+                },
+                {
+                    "id": 3,
+                    "question": "Welches Kriterium ist zusätzlich zum CAL entscheidend für die Einstufung in Stadium III oder IV?",
+                    "options": {
+                        "A": "Die Anzahl der Molaren",
+                        "B": "Das Ausmaß des Zahnverlustes und die funktionelle Beeinträchtigung",
+                        "C": "Die Blutungsneigung des Zahnfleisches",
+                        "D": "Die Tiefe der Zahnfleischtaschen allein"
+                    },
+                    "correct": "B",
+                    "explanation": "Stadium III und IV unterscheiden sich primär durch das Ausmaß des Zahnverlustes und die funktionelle Beeinträchtigung der Dentition. Stadium IV zeigt zusätzlich zu CAL ≥5 mm einen Zahnverlust von ≥5 Zähnen und komplexe rehabilitative Bedürfnisse wie sekundäre okklusale Traumata, Wanderbiss oder weniger als 20 erhaltene Zähne."
+                },
+                {
+                    "id": 4,
+                    "question": "Ein Patient hat einen CAL von 6 mm, aber nur 2 fehlende Zähne und keine Bissprobleme. Welches Stadium ist am wahrscheinlichsten?",
+                    "options": {
+                        "A": "Stadium II",
+                        "B": "Stadium III",
+                        "C": "Stadium IV",
+                        "D": "Stadium I"
+                    },
+                    "correct": "B",
+                    "explanation": "Stadium III ist durch CAL ≥5 mm und Zahnverlust von 1-4 Zähnen charakterisiert. Trotz des hohen CAL fehlen die komplexen rehabilitativen Bedürfnisse und der extensive Zahnverlust, die für Stadium IV erforderlich wären."
+                },
+                {
+                    "id": 5,
+                    "question": "Welche Aussage über Stadium IV ist korrekt?",
+                    "options": {
+                        "A": "Es liegt vor bei CAL von 3-4 mm",
+                        "B": "Es zeigt Potential für Zahnverlust der gesamten Dentition",
+                        "C": "Es erfordert keine komplexe Rehabilitation",
+                        "D": "Es betrifft hauptsächlich Jugendliche"
+                    },
+                    "correct": "B",
+                    "explanation": "Stadium IV bezeichnet die schwere Parodontitis mit Potential für Zahnverlust der gesamten Dentition. Es ist charakterisiert durch CAL ≥5 mm, Zahnverlust ≥5 Zähne, und komplexe rehabilitative Bedürfnisse wie sekundäre okklusale Traumata, schwere Bissanomalien oder weniger als 20 erhaltene Zähne."
+                },
+                {
+                    "id": 6,
+                    "question": "Welches Grading beschreibt eine langsame Progressionsrate der Parodontitis?",
+                    "options": {
+                        "A": "Grad A",
+                        "B": "Grad B",
+                        "C": "Grad C",
+                        "D": "Grad D"
+                    },
+                    "correct": "A",
+                    "explanation": "Grad A beschreibt eine langsame Progressionsrate mit einem Knochen-/Altersverlust-Verhältnis <0,25 und weniger als 2% direktem Knochenverlust über 5 Jahre. Dies weist auf eine langsame Progression der Erkrankung hin."
+                },
+                {
+                    "id": 7,
+                    "question": "Ein Patient zeigt einen Knochenabbau von 3% über 5 Jahre. Welches Grading liegt vor (ohne Berücksichtigung weiterer Risikofaktoren)?",
+                    "options": {
+                        "A": "Grad A: Langsame Progression",
+                        "B": "Grad B: Moderate Progression",
+                        "C": "Grad C: Schnelle Progression",
+                        "D": "Grading nicht bestimmbar"
+                    },
+                    "correct": "B",
+                    "explanation": "Grad B (Moderate Progressionsrate) ist definiert durch einen direkten Knochenverlust von 2-4% über 5 Jahre oder ein Knochen-/Altersverlust-Verhältnis von 0,25-1,0. Der Patient mit 3% Knochenverlust fällt in diese Kategorie."
+                },
+                {
+                    "id": 8,
+                    "question": "Welcher Risikofaktor kann das Grading von B auf C modifizieren?",
+                    "options": {
+                        "A": "Genetische Veranlagung allein",
+                        "B": "Rauchen ≥10 Zigaretten/Tag oder HbA1c ≥7,0%",
+                        "C": "Alter über 50 Jahre",
+                        "D": "Weibliches Geschlecht"
+                    },
+                    "correct": "B",
+                    "explanation": "Das Grading kann durch Risikofaktoren modifiziert werden. Rauchen von ≥10 Zigaretten pro Tag oder ein HbA1c-Wert ≥7,0% (bei Diabetes) können das Grading von B auf C erhöhen, da diese Faktoren die Progressionsrate der Parodontitis beschleunigen."
+                },
+                {
+                    "id": 9,
+                    "question": "Was kennzeichnet Grad C der Parodontitis?",
+                    "options": {
+                        "A": "Knochenabbau von <1% über 5 Jahre",
+                        "B": "Knochen-/Altersverlust-Verhältnis von >1,0",
+                        "C": "Ausschließlich bei Nichtrauchern",
+                        "D": "Nur bei Kindern unter 12 Jahren"
+                    },
+                    "correct": "B",
+                    "explanation": "Grad C (Schnelle Progressionsrate) ist charakterisiert durch ein Knochen-/Altersverlust-Verhältnis >1,0 oder einen direkten Knochenverlust ≥2% über 5 Jahre. Dies weist auf eine rapide Progression der Parodontitis hin und ist häufig mit Risikofaktoren wie starkem Rauchen oder schlecht kontrolliertem Diabetes assoziiert."
+                },
+                {
+                    "id": 10,
+                    "question": "Warum ist das Grading in der parodontalen Diagnostik wichtig?",
+                    "options": {
+                        "A": "Es bestimmt ausschließlich die chirurgische Technik",
+                        "B": "Es hilft bei der Prognoseeinschätzung und Therapieplanung",
+                        "C": "Es ist nur für wissenschaftliche Studien relevant",
+                        "D": "Es ersetzt die Taschentiefenmessung"
+                    },
+                    "correct": "B",
+                    "explanation": "Das Grading ist essentiell für die Prognoseeinschätzung und individuelle Therapieplanung. Es berücksichtigt die Progressionsrate und Risikofaktoren und hilft zu bestimmen, wie aggressiv die Behandlung sein muss und wie engmaschig die Nachsorge erfolgen sollte."
+                },
+                {
+                    "id": 11,
+                    "question": "Ab welchem Prozentsatz betroffener Zähne spricht man von einer generalisierten Parodontitis?",
+                    "options": {
+                        "A": "≥10%",
+                        "B": "≥20%",
+                        "C": "≥30%",
+                        "D": "≥50%"
+                    },
+                    "correct": "C",
+                    "explanation": "Eine generalisierte Parodontitis liegt vor, wenn ≥30% der vorhandenen Zähne betroffen sind. Diese Unterscheidung ist wichtig für die Therapieplanung, da eine generalisierte Form häufig einen systematischeren Behandlungsansatz erfordert."
+                },
+                {
+                    "id": 12,
+                    "question": "Ein Patient zeigt parodontale Taschen ≥4 mm an 8 von 28 vorhandenen Zähnen. Wie wird dies klassifiziert?",
+                    "options": {
+                        "A": "Lokalisierte Parodontitis",
+                        "B": "Generalisierte Parodontitis",
+                        "C": "Molare-Inzisive-Parodontitis",
+                        "D": "Gingivitis"
+                    },
+                    "correct": "A",
+                    "explanation": "8 von 28 Zähnen entsprechen etwa 29% der Zähne, was unter der 30%-Schwelle liegt. Daher handelt es sich um eine lokalisierte Parodontitis (<30% der Zähne betroffen). Diese Unterscheidung beeinflusst die Behandlungsstrategie und Prognose."
+                },
+                {
+                    "id": 13,
+                    "question": "Welche klinische Bedeutung hat die Unterscheidung zwischen lokalisierter und generalisierter Parodontitis?",
+                    "options": {
+                        "A": "Nur statistische Relevanz",
+                        "B": "Beeinflusst Therapieumfang und Prognose",
+                        "C": "Bestimmt ausschließlich die Antibiotikawahl",
+                        "D": "Hat keine therapeutischen Konsequenzen"
+                    },
+                    "correct": "B",
+                    "explanation": "Die Unterscheidung zwischen lokalisierter und generalisierter Parodontitis hat wichtige therapeutische Konsequenzen. Eine generalisierte Form erfordert oft eine umfassendere Behandlung der gesamten Dentition, während lokalisierte Formen gezielter behandelt werden können. Auch die Prognose unterscheidet sich, da generalisierte Formen oft komplexer sind."
+                },
+                {
+                    "id": 14,
+                    "question": "Was charakterisiert die Molare-Inzisive-Parodontitis nach der 2018-Klassifikation?",
+                    "options": {
+                        "A": "Betrifft ausschließlich Weisheitszähne",
+                        "B": "Betrifft primär erste Molaren und Inzisivi mit Beginn um die Pubertät",
+                        "C": "Tritt nur bei Patienten über 60 Jahren auf",
+                        "D": "Ist immer mit Diabetes assoziiert"
+                    },
+                    "correct": "B",
+                    "explanation": "Die Molare-Inzisive-Parodontitis (früher: aggressive Parodontitis) ist charakterisiert durch einen Beginn um die Pubertät mit primärer Beteiligung der ersten Molaren und Inzisivi. Sie zeigt oft familiäre Häufung und einen rapiden Attachmentverlust, der nicht mit der Menge an Plaque korreliert."
+                },
+                {
+                    "id": 15,
+                    "question": "Welches mikrobiologische Merkmal ist typisch für die Molare-Inzisive-Parodontitis?",
+                    "options": {
+                        "A": "Überwiegend Streptokokken",
+                        "B": "Erhöhte Anzahl von Aggregatibacter actinomycetemcomitans",
+                        "C": "Ausschließlich anaerobe Bakterien",
+                        "D": "Keine bakterielle Beteiligung"
+                    },
+                    "correct": "B",
+                    "explanation": "Die Molare-Inzisive-Parodontitis ist häufig mit erhöhten Konzentrationen von Aggregatibacter actinomycetemcomitans assoziiert. Diese Bakterienspezies ist besonders pathogen und kann die aggressive Natur dieser Parodontitisform erklären. Oft findet sich auch eine reduzierte Abwehrfunktion der Neutrophilen."
+                },
+                {
+                    "id": 16,
+                    "question": "Ein 16-jähriger Patient zeigt rapiden Attachmentverlust an den ersten Molaren und Frontzähnen. Welche Diagnose ist wahrscheinlich?",
+                    "options": {
+                        "A": "Stadium I Parodontitis",
+                        "B": "Molare-Inzisive-Parodontitis",
+                        "C": "Gingivitis",
+                        "D": "Altersbedingte Parodontitis"
+                    },
+                    "correct": "B",
+                    "explanation": "Das junge Alter (16 Jahre), das spezifische Befallsmuster (erste Molaren und Inzisivi) und die rapide Progression sind typisch für die Molare-Inzisive-Parodontitis. Diese Form beginnt oft um die Pubertät und zeigt einen disproportional schnellen Attachmentverlust im Verhältnis zur vorhandenen Plaquemenge."
+                },
+                {
+                    "id": 17,
+                    "question": "Ab welchem Alter kann eine Parodontitis bei Kindern und Jugendlichen diagnostiziert werden?",
+                    "options": {
+                        "A": "Erst ab 18 Jahren",
+                        "B": "Bereits im Milchgebiss möglich",
+                        "C": "Nur nach vollständigem Zahnwechsel",
+                        "D": "Nie vor dem 25. Lebensjahr"
+                    },
+                    "correct": "B",
+                    "explanation": "Parodontitis kann bereits im Milchgebiss auftreten, ist aber selten. Die primäre Parodontitis (bei Milchzähnen) und die Parodontitis bei Jugendlichen werden nach denselben Staging- und Grading-Kriterien klassifiziert wie bei Erwachsenen. Früherkennung ist wichtig, da juvenile Formen oft aggressive Verläufe zeigen."
+                },
+                {
+                    "id": 18,
+                    "question": "Welche Besonderheit gilt für die Parodontitis bei Kindern unter 30 Jahren?",
+                    "options": {
+                        "A": "Sie ist immer reversibel ohne Behandlung",
+                        "B": "Sie wird automatisch als Grad C klassifiziert",
+                        "C": "Sie tritt nie auf",
+                        "D": "Sie erfordert keine Behandlung"
+                    },
+                    "correct": "B",
+                    "explanation": "Parodontitis bei Patienten unter 30 Jahren wird automatisch als Grad C (schnelle Progression) klassifiziert, da das Auftreten in diesem jungen Alter auf eine besonders aggressive Form oder starke Risikofaktoren hinweist. Dies beeinflusst die Therapie, die intensiver und mit engmaschigerer Nachsorge erfolgen sollte."
+                },
+                {
+                    "id": 19,
+                    "question": "Was versteht man unter dem parodontalen Phänotyp (Biotyp)?",
+                    "options": {
+                        "A": "Die Blutgruppe des Patienten",
+                        "B": "Die Dicke und Morphologie des Gingivaund Knochengewebes",
+                        "C": "Die Farbe des Zahnfleisches",
+                        "D": "Die Anzahl der Zähne"
+                    },
+                    "correct": "B",
+                    "explanation": "Der parodontale Phänotyp (früher Biotyp) beschreibt die Dicke und Morphologie des Gingiva- und Alveolarknochengewebes. Er umfasst Faktoren wie Gingivadicke, Breite der keratinisierten Gingiva, Knochendicke und Zahnform. Diese Parameter beeinflussen das Risiko für Rezessionen und den Therapieerfolg."
+                },
+                {
+                    "id": 20,
+                    "question": "Welche Merkmale sind typisch für den dünnen parodontalen Phänotyp?",
+                    "options": {
+                        "A": "Dicke Gingiva, breite keratinisierte Gingiva, flache Knochenmorphologie",
+                        "B": "Dünne Gingiva, schmale keratinisierte Gingiva, festonierte Knochenmorphologie",
+                        "C": "Nur bei Milchzähnen vorhanden",
+                        "D": "Verursacht immer Parodontitis"
+                    },
+                    "correct": "B",
+                    "explanation": "Der dünne parodontale Phänotyp ist charakterisiert durch dünne Gingiva (<1 mm), schmale keratinisierte Gingiva, eine festonierte (girlandenförmige) Knochenmorphologie und oft dreieckige Zahnformen. Dieser Phänotyp hat ein höheres Risiko für gingivale Rezessionen und erfordert besondere Vorsicht bei parodontalchirurgischen Eingriffen."
+                },
+                {
+                    "id": 21,
+                    "question": "Welche therapeutische Konsequenz ergibt sich aus einem dünnen parodontalen Phänotyp?",
+                    "options": {
+                        "A": "Keine therapeutischen Konsequenzen",
+                        "B": "Höheres Rezessionsrisiko, vorsichtige Instrumentierung und evtl. Weichgewebsaugmentation",
+                        "C": "Aggressive Kürettage empfohlen",
+                        "D": "Sofortige Extraktion aller Zähne"
+                    },
+                    "correct": "B",
+                    "explanation": "Bei einem dünnen parodontalen Phänotyp besteht ein erhöhtes Risiko für gingivale Rezessionen, insbesondere nach chirurgischen Eingriffen. Die Therapie sollte daher vorsichtiger erfolgen, die Instrumentierung sollte atraumatisch sein, und in manchen Fällen kann eine Weichgewebsaugmentation (z.B. mit Bindegewebstransplantat) indiziert sein, um das Gewebe zu verstärken."
+                },
+                {
+                    "id": 22,
+                    "question": "Welcher Risikofaktor hat den stärksten Einfluss auf die Prognose einer Parodontitis?",
+                    "options": {
+                        "A": "Zahnstein allein",
+                        "B": "Rauchen",
+                        "C": "Alter über 40 Jahre",
+                        "D": "Geschlecht"
+                    },
+                    "correct": "B",
+                    "explanation": "Rauchen ist einer der stärksten modifizierbaren Risikofaktoren für Parodontitis. Raucher haben ein 2-7-fach erhöhtes Risiko für Parodontitis, eine schlechtere Wundheilung, reduziertes Ansprechen auf die Therapie und höhere Rezidivraten. Rauchen ≥10 Zigaretten/Tag kann das Grading auf C erhöhen."
+                },
+                {
+                    "id": 23,
+                    "question": "Wie beeinflusst Diabetes mellitus die Parodontitis-Klassifikation?",
+                    "options": {
+                        "A": "Diabetes hat keinen Einfluss",
+                        "B": "HbA1c ≥7,0% kann das Grading von B auf C erhöhen",
+                        "C": "Diabetes verhindert Parodontitis",
+                        "D": "Diabetes führt automatisch zu Stadium IV"
+                    },
+                    "correct": "B",
+                    "explanation": "Schlecht kontrollierter Diabetes mellitus (HbA1c ≥7,0%) ist ein wichtiger Risikofaktor für die Progression der Parodontitis und kann das Grading von B auf C erhöhen. Diabetes beeinträchtigt die Immunantwort, verzögert die Wundheilung und verstärkt die entzündliche Gewebsdestruktion. Umgekehrt kann erfolgreiche Parodontitistherapie auch die glykämische Kontrolle verbessern."
+                },
+                {
+                    "id": 24,
+                    "question": "Welcher Faktor ist KEIN direkter Bestandteil der Staging-Kriterien?",
+                    "options": {
+                        "A": "Klinischer Attachmentverlust (CAL)",
+                        "B": "Raucherstatus",
+                        "C": "Anzahl verlorener Zähne",
+                        "D": "Radiologischer Knochenabbau"
+                    },
+                    "correct": "B",
+                    "explanation": "Das Staging basiert auf der Schwere und Komplexität der Erkrankung (CAL, Knochenabbau, Zahnverlust, Komplexität der Rehabilitation). Der Raucherstatus ist hingegen ein Risikofaktor, der in das Grading einfließt, welches die Progressionsrate und das Risikoprofil bewertet. Staging und Grading sind komplementäre, aber getrennte Dimensionen der Klassifikation."
+                },
+                {
+                    "id": 25,
+                    "question": "Ein Patient mit Stadium II, Grad C, generalisierter Parodontitis - was bedeutet diese Klassifikation für die Prognose?",
+                    "options": {
+                        "A": "Ausgezeichnete Prognose ohne Therapiebedarf",
+                        "B": "Moderate Schwere, aber schnelle Progression - engmaschige Kontrolle erforderlich",
+                        "C": "Sehr schlechte Prognose, Zahnverlust unvermeidbar",
+                        "D": "Keine Behandlung möglich"
+                    },
+                    "correct": "B",
+                    "explanation": "Diese Klassifikation bedeutet: Stadium II = moderate Schwere (CAL 3-4 mm), Grad C = schnelle Progressionsrate, generalisiert = ≥30% der Zähne betroffen. Die Kombination erfordert zeitnahe, umfassende Therapie mit strikter Risikofaktorkontrolle und engmaschiger Nachsorge, da trotz moderater aktueller Schwere die schnelle Progression zu raschem Fortschreiten führen kann. Die Prognose kann bei konsequenter Therapie und Mitarbeit jedoch gut sein."
+                }
+            ]
+        };
+
+        const state = {
+            currentIndex: 0,
+            answers: {},
+            score: 0,
+            displayedQuestions: [],
+            pendingSlots: []
+        };
+
+        const questionsRow = document.getElementById('questionsRow');
+        const progressBar = document.getElementById('progressBar');
+        const progressBadge = document.getElementById('progressBadge');
+        const scoreBadge = document.getElementById('scoreBadge');
+        const resultsCard = document.getElementById('resultsCard');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function initQuiz() {
+            state.currentIndex = 0;
+            state.answers = {};
+            state.score = 0;
+            state.displayedQuestions = [];
+            state.pendingSlots = [];
+
+            resultsCard.classList.remove('show');
+            questionsRow.style.display = 'grid';
+            nextBtn.classList.remove('show');
+
+            // Show first 3 questions
+            for (let i = 0; i < 3 && i < quizData.questions.length; i++) {
+                state.displayedQuestions.push(i);
+            }
+            state.currentIndex = Math.min(3, quizData.questions.length);
+
+            renderQuestions();
+            updateStats();
+        }
+
+        function renderQuestions() {
+            questionsRow.innerHTML = '';
+
+            state.displayedQuestions.forEach((qIdx, slot) => {
+                const q = quizData.questions[qIdx];
+                const answered = state.answers[q.id] !== undefined;
+                const isCorrect = answered && state.answers[q.id] === q.correct;
+                const isIncorrect = answered && state.answers[q.id] !== q.correct;
+
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                if (isCorrect) card.classList.add('correct-card', 'answered');
+                if (isIncorrect) card.classList.add('incorrect-card', 'answered');
+
+                card.innerHTML = `
+                    <div class="q-header">
+                        <span class="q-number">Q${qIdx + 1}</span>
+                        ${answered ? `<span class="q-status">${isCorrect ? '&#10004;' : '&#10008;'}</span>` : ''}
+                    </div>
+                    <div class="q-text">${q.question}</div>
+                    <div class="options" data-qid="${q.id}" data-slot="${slot}">
+                        ${['A','B','C','D'].map(letter => {
+                            let optClass = 'option-btn';
+                            if (answered) {
+                                optClass += ' disabled';
+                                if (letter === q.correct) optClass += ' correct';
+                                else if (letter === state.answers[q.id]) optClass += ' incorrect';
+                            }
+                            return `
+                                <button class="${optClass}" data-letter="${letter}" ${answered ? 'disabled' : ''}>
+                                    <span class="option-letter">${letter}</span>
+                                    <span class="option-text">${q.options[letter]}</span>
+                                </button>
+                            `;
+                        }).join('')}
+                    </div>
+                    <div class="feedback ${answered ? 'show' : ''} ${isCorrect ? 'correct' : 'incorrect'}">
+                        ${answered ? (isCorrect ? '&#10004; ' : `&#10008; Antwort: ${q.correct}. `) + q.explanation : ''}
+                    </div>
+                `;
+
+                // Add click handlers
+                if (!answered) {
+                    card.querySelectorAll('.option-btn').forEach(btn => {
+                        btn.addEventListener('click', () => handleAnswer(qIdx, slot, btn.dataset.letter));
+                    });
+                }
+
+                questionsRow.appendChild(card);
+            });
+
+            renderMath();
+        }
+
+        function handleAnswer(qIdx, slot, letter) {
+            const q = quizData.questions[qIdx];
+            state.answers[q.id] = letter;
+
+            if (letter === q.correct) state.score++;
+
+            // Track this slot as pending replacement
+            if (!state.pendingSlots.includes(slot)) {
+                state.pendingSlots.push(slot);
+            }
+
+            updateStats();
+            renderQuestions();
+
+            // Check if all questions answered
+            const answered = Object.keys(state.answers).length;
+            if (answered >= quizData.questions.length) {
+                // Short delay then show results
+                setTimeout(showResults, 800);
+            } else if (state.currentIndex < quizData.questions.length && state.pendingSlots.length > 0) {
+                // Show Next button if there are more questions and pending slots
+                nextBtn.classList.add('show');
+            }
+        }
+
+        function loadNextQuestions() {
+            // Replace pending slots with new questions
+            while (state.pendingSlots.length > 0 && state.currentIndex < quizData.questions.length) {
+                const slot = state.pendingSlots.shift();
+                state.displayedQuestions[slot] = state.currentIndex;
+                state.currentIndex++;
+            }
+
+            // Hide Next button
+            nextBtn.classList.remove('show');
+
+            renderQuestions();
+
+            // Check if quiz is complete (all displayed questions answered)
+            const answered = Object.keys(state.answers).length;
+            if (answered >= quizData.questions.length) {
+                setTimeout(showResults, 500);
+            }
+        }
+
+        function updateStats() {
+            const answered = Object.keys(state.answers).length;
+            const total = quizData.questions.length;
+
+            progressBar.style.width = `${(answered / total) * 100}%`;
+            progressBadge.textContent = `${answered}/${total}`;
+            scoreBadge.textContent = `Ergebnis: ${state.score}`;
+        }
+
+        function showResults() {
+            questionsRow.style.display = 'none';
+            nextBtn.classList.remove('show');
+            resultsCard.classList.add('show');
+
+            const total = quizData.questions.length;
+            const percentage = Math.round((state.score / total) * 100);
+
+            document.getElementById('resultsScore').textContent = `${state.score}/${total}`;
+
+            let grade, gradeClass, icon;
+            if (percentage >= 90) { grade = 'Ausgezeichnet! A'; gradeClass = 'grade-a'; icon = '&#127942;'; }
+            else if (percentage >= 80) { grade = 'Sehr gut! B'; gradeClass = 'grade-b'; icon = '&#11088;'; }
+            else if (percentage >= 70) { grade = 'Gut! C'; gradeClass = 'grade-c'; icon = '&#128077;'; }
+            else if (percentage >= 60) { grade = 'Bestanden - D'; gradeClass = 'grade-d'; icon = '&#128221;'; }
+            else { grade = 'Weiter üben!'; gradeClass = 'grade-f'; icon = '&#128218;'; }
+
+            document.getElementById('resultsIcon').innerHTML = icon;
+            const gradeEl = document.getElementById('resultsGrade');
+            gradeEl.textContent = `${grade} (${percentage}%)`;
+            gradeEl.className = `results-grade ${gradeClass}`;
+        }
+
+        function restartQuiz() {
+            initQuiz();
+        }
+
+        function renderMath() {
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initQuiz();
+            setTimeout(renderMath, 100);
+        });
+    </script>
+</body>
+</html>

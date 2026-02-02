@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 2: Differentielle Diagnostik | Parodontose</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        :root {
+            --mlpurple: #3333B2;
+            --mlblue: #0066CC;
+            --quiz-accent: #8b5cf6;
+            --quiz-light: #ede9fe;
+            --correct: #22c55e;
+            --correct-bg: #dcfce7;
+            --incorrect: #ef4444;
+            --incorrect-bg: #fee2e2;
+            --bg: #f6f8fa;
+            --card-bg: #ffffff;
+            --text: #24292e;
+            --text-secondary: #586069;
+            --border: #e1e4e8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.4;
+            min-height: 100vh;
+        }
+
+        .nav {
+            background: linear-gradient(135deg, var(--mlpurple), var(--mlblue));
+            color: white;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-title { font-weight: 600; font-size: 14px; }
+        .nav-links { display: flex; gap: 16px; }
+        .nav-links a { color: white; text-decoration: none; font-size: 12px; opacity: 0.9; }
+        .nav-links a:hover { opacity: 1; }
+
+        .quiz-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 12px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 0 4px;
+        }
+        .quiz-title { font-size: 16px; font-weight: 600; color: var(--mlpurple); }
+        .quiz-stats {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+        }
+        .stat-badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        .stat-progress { background: var(--quiz-light); color: var(--quiz-accent); }
+        .stat-score { background: var(--correct-bg); color: var(--correct); }
+
+        .progress-bar-container {
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-bottom: 12px;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--quiz-accent);
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        /* Three-column layout */
+        .questions-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            min-height: 280px;
+        }
+
+        .question-card.answered { opacity: 0.7; }
+
+        .question-card.correct-card {
+            border: 2px solid var(--correct);
+            background: linear-gradient(to bottom, var(--correct-bg), var(--card-bg));
+        }
+
+        .question-card.incorrect-card {
+            border: 2px solid var(--incorrect);
+            background: linear-gradient(to bottom, var(--incorrect-bg), var(--card-bg));
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .q-number {
+            background: var(--quiz-light);
+            color: var(--quiz-accent);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .q-status { font-size: 14px; }
+
+        .q-text {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            flex-grow: 0;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-grow: 1;
+        }
+
+        .option-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            min-height: 44px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--card-bg);
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .option-btn:hover:not(.disabled) {
+            border-color: var(--quiz-accent);
+            background: var(--quiz-light);
+        }
+
+        .option-btn.correct {
+            border-color: var(--correct);
+            background: var(--correct-bg);
+        }
+
+        .option-btn.incorrect {
+            border-color: var(--incorrect);
+            background: var(--incorrect-bg);
+        }
+
+        .option-btn.disabled { cursor: default; }
+
+        .option-letter {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 10px;
+            flex-shrink: 0;
+        }
+
+        .option-btn.correct .option-letter {
+            background: var(--correct);
+            color: white;
+        }
+
+        .option-btn.incorrect .option-letter {
+            background: var(--incorrect);
+            color: white;
+        }
+
+        .option-text { flex: 1; }
+
+        .feedback {
+            margin-top: 8px;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            line-height: 1.4;
+            display: none;
+        }
+
+        .feedback.show { display: block; }
+        .feedback.correct { background: var(--correct-bg); color: #166534; }
+        .feedback.incorrect { background: var(--incorrect-bg); color: #991b1b; }
+
+        /* Results */
+        .results-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 32px;
+            text-align: center;
+            max-width: 500px;
+            margin: 40px auto;
+            display: none;
+        }
+        .results-card.show { display: block; }
+        .results-icon { font-size: 48px; margin-bottom: 8px; }
+        .results-score { font-size: 36px; font-weight: 700; color: var(--quiz-accent); }
+        .results-label { font-size: 14px; color: var(--text-secondary); margin-bottom: 16px; }
+        .results-grade {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .grade-a { background: #dcfce7; color: #166534; }
+        .grade-b { background: #dbeafe; color: #1e40af; }
+        .grade-c { background: #fef3c7; color: #92400e; }
+        .grade-d { background: #fed7aa; color: #9a3412; }
+        .grade-f { background: #fee2e2; color: #991b1b; }
+
+        .results-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+        }
+        .btn-primary { background: var(--quiz-accent); color: white; }
+        .btn-primary:hover { background: #7c3aed; }
+        .btn-secondary { background: var(--card-bg); color: var(--text); border: 1px solid var(--border); }
+
+        /* Next button container */
+        .next-btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        .btn-next {
+            padding: 10px 32px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            background: var(--quiz-accent);
+            color: white;
+            transition: all 0.2s;
+            display: none;
+        }
+        .btn-next:hover { background: #7c3aed; transform: scale(1.02); }
+        .btn-next.show { display: inline-block; }
+        .btn-next:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        @media (max-width: 900px) {
+            .questions-row { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .questions-row { grid-template-columns: 1fr; }
+            .question-card { min-height: auto; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-title">Quiz 2: Differentielle Diagnostik</div>
+        <div class="nav-links">
+            <a href="../index.html">Übersicht</a>
+            <a href="https://github.com/Digital-AI-Finance/Parodontose" target="_blank">GitHub</a>
+        </div>
+    </nav>
+
+    <main class="quiz-container">
+        <div class="quiz-header">
+            <div class="quiz-title">Quiz 2: Differentielle Diagnostik</div>
+            <div class="quiz-stats">
+                <span class="stat-badge stat-progress" id="progressBadge">0/25</span>
+                <span class="stat-badge stat-score" id="scoreBadge">Ergebnis: 0</span>
+            </div>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+        </div>
+
+        <div class="questions-row" id="questionsRow"></div>
+
+        <div class="next-btn-container">
+            <button class="btn-next" id="nextBtn" onclick="loadNextQuestions()">Nächste</button>
+        </div>
+
+        <div class="results-card" id="resultsCard">
+            <div class="results-icon" id="resultsIcon"></div>
+            <div class="results-score" id="resultsScore"></div>
+            <div class="results-label">Richtige Antworten</div>
+            <div class="results-grade" id="resultsGrade"></div>
+            <div class="results-buttons">
+                <button class="btn btn-primary" onclick="restartQuiz()">Nochmal versuchen</button>
+                <a href="../index.html" class="btn btn-secondary">Übersicht</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const quizData = {
+            questions: [
+                {
+                    "id": 1,
+                    "question": "Was ist das Hauptunterscheidungsmerkmal zwischen Gingivitis und Parodontitis?",
+                    "options": {
+                        "A": "Das Vorhandensein von Plaque",
+                        "B": "Das Vorhandensein von Attachmentverlust",
+                        "C": "Die Tiefe der Gingivataschen",
+                        "D": "Das Ausmaß der Blutung"
+                    },
+                    "correct": "B",
+                    "explanation": "Der entscheidende Unterschied zwischen Gingivitis und Parodontitis ist das Vorhandensein von Attachmentverlust. Bei der Gingivitis liegt eine reversible Entzündung des Zahnfleisches ohne Attachmentverlust vor, während die Parodontitis durch irreversiblen Attachmentverlust und Knochenabbau gekennzeichnet ist."
+                },
+                {
+                    "id": 2,
+                    "question": "Welches Merkmal ist charakteristisch für eine Gingivitis im Gegensatz zur Parodontitis?",
+                    "options": {
+                        "A": "Zahnlockerung",
+                        "B": "Vollständige Reversibilität nach Plaqueentfernung",
+                        "C": "Radiologisch nachweisbarer Knochenabbau",
+                        "D": "Zahnwanderung"
+                    },
+                    "correct": "B",
+                    "explanation": "Die Gingivitis ist im Gegensatz zur Parodontitis vollständig reversibel. Nach konsequenter Plaqueentfernung kann das Zahnfleisch vollständig zur Gesundheit zurückkehren. Bei der Parodontitis ist der bereits eingetretene Attachmentverlust und Knochenabbau irreversibel."
+                },
+                {
+                    "id": 3,
+                    "question": "Welcher klinische Parameter ist bei Gingivitis NICHT verändert?",
+                    "options": {
+                        "A": "Bleeding on Probing (BOP)",
+                        "B": "Gingivales Ödem",
+                        "C": "Klinisches Attachmentniveau",
+                        "D": "Sulkusfluidfluss"
+                    },
+                    "correct": "C",
+                    "explanation": "Das klinische Attachmentniveau bleibt bei einer Gingivitis unverändert. Es liegt keine Zerstörung des parodontalen Stützgewebes vor. Dagegen sind BOP, Ödem und Sulkusfluidfluss als Entzündungszeichen erhöht."
+                },
+                {
+                    "id": 4,
+                    "question": "Bei welcher Sondierungstiefe spricht man typischerweise von einer echten parodontalen Tasche im Unterschied zur Pseudotasche?",
+                    "options": {
+                        "A": "Wenn Attachmentverlust nachweisbar ist",
+                        "B": "Ab 4 mm Taschentiefe",
+                        "C": "Bei jeglicher Blutung auf Sondierung",
+                        "D": "Nur wenn Eiter vorhanden ist"
+                    },
+                    "correct": "A",
+                    "explanation": "Eine echte parodontale Tasche liegt vor, wenn ein Attachmentverlust nachweisbar ist, unabhängig von der absoluten Taschentiefe. Bei einer Pseudotasche (z.B. bei Gingivitis mit Hyperplasie) liegt keine apikale Verschiebung des Attachments vor, trotz eventuell erhöhter Sondierungstiefen."
+                },
+                {
+                    "id": 5,
+                    "question": "Welches war ein Hauptmerkmal der aggressiven Parodontitis nach der alten Klassifikation?",
+                    "options": {
+                        "A": "Langsames Fortschreiten",
+                        "B": "Diskrepanz zwischen Menge der Plaque und Schwere der Erkrankung",
+                        "C": "Auftreten nur bei Rauchern",
+                        "D": "Reversibilität der Läsionen"
+                    },
+                    "correct": "B",
+                    "explanation": "Ein charakteristisches Merkmal der aggressiven Parodontitis war die auffällige Diskrepanz zwischen der oft geringen Menge an mikrobiellem Belag und der Schwere der parodontalen Destruktion. Dies deutete auf eine verstärkte Wirtsreaktion oder spezifische pathogene Mikroorganismen hin."
+                },
+                {
+                    "id": 6,
+                    "question": "Welches typische Befallsmuster zeigte die lokalisierte aggressive Parodontitis (LAP)?",
+                    "options": {
+                        "A": "Generalisierter Befall aller Zähne",
+                        "B": "Nur Frontzähne",
+                        "C": "Erste Molaren und Schneidezähne",
+                        "D": "Ausschließlich Prämolaren"
+                    },
+                    "correct": "C",
+                    "explanation": "Die lokalisierte aggressive Parodontitis (LAP) war gekennzeichnet durch einen charakteristischen Befall der ersten Molaren und Schneidezähne, oft mit einem symmetrischen Befallsmuster. Der Beginn lag typischerweise um die Pubertät herum."
+                },
+                {
+                    "id": 7,
+                    "question": "In welchem Lebensalter trat die aggressive Parodontitis typischerweise auf?",
+                    "options": {
+                        "A": "Vor dem 30. Lebensjahr",
+                        "B": "Ausschließlich nach dem 50. Lebensjahr",
+                        "C": "Nur im Kleinkindalter",
+                        "D": "Gleichmäßig über alle Altersgruppen verteilt"
+                    },
+                    "correct": "A",
+                    "explanation": "Die aggressive Parodontitis nach alter Klassifikation trat typischerweise vor dem 30. Lebensjahr auf, oft bereits während oder kurz nach der Pubertät. Dies war ein wichtiges Unterscheidungsmerkmal zur chronischen Parodontitis, die eher bei älteren Patienten auftrat."
+                },
+                {
+                    "id": 8,
+                    "question": "Welches klinische Merkmal ist pathognomonisch für nekrotisierende ulzerierende Gingivitis (NUG)?",
+                    "options": {
+                        "A": "Langsamer, schmerzloser Verlauf",
+                        "B": "Nekrose und Ulzeration der Interdentalpapillen",
+                        "C": "Ausschließlicher Befall der bukkalen Gingiva",
+                        "D": "Chronischer Verlauf über Jahre"
+                    },
+                    "correct": "B",
+                    "explanation": "Das pathognomonische Zeichen der NUG ist die Nekrose und Ulzeration der Interdentalpapillen, oft mit charakteristischer 'Kraterbildung'. Begleitet wird dies von starken Schmerzen, Blutungsneigung, Pseudomembranen und oft Fötor ex ore."
+                },
+                {
+                    "id": 9,
+                    "question": "Welcher Unterschied besteht zwischen NUG und NUP?",
+                    "options": {
+                        "A": "NUP zeigt zusätzlich Knochenabbau und Attachmentverlust",
+                        "B": "NUG tritt nur bei Kindern auf",
+                        "C": "NUP ist weniger schmerzhaft",
+                        "D": "Es gibt keinen Unterschied"
+                    },
+                    "correct": "A",
+                    "explanation": "Der Hauptunterschied zwischen nekrotisierender ulzerierender Gingivitis (NUG) und nekrotisierender ulzerierender Parodontitis (NUP) besteht darin, dass bei NUP zusätzlich zur Weichgewebsnekrose auch Knochenabbau und Attachmentverlust auftreten. NUP stellt somit die schwerere Verlaufsform dar."
+                },
+                {
+                    "id": 10,
+                    "question": "Welche Patientengruppe hat ein besonders erhöhtes Risiko für nekrotisierende parodontale Erkrankungen?",
+                    "options": {
+                        "A": "Gut ernährte, gesunde Erwachsene",
+                        "B": "HIV-positive Patienten und immunsupprimierte Personen",
+                        "C": "Schwangere ohne weitere Risikofaktoren",
+                        "D": "Kinder mit guter Mundhygiene"
+                    },
+                    "correct": "B",
+                    "explanation": "Nekrotisierende parodontale Erkrankungen treten besonders häufig bei immunsupprimierten Patienten auf, einschließlich HIV-positiver Personen. Weitere Risikofaktoren sind Stress, Rauchen, Mangelernährung und psychosozialer Stress. Die Erkrankung ist charakteristisch für eine gestörte Immunabwehr."
+                },
+                {
+                    "id": 11,
+                    "question": "Bei welcher systemischen Erkrankung kann Parodontitis als direkte Manifestation auftreten?",
+                    "options": {
+                        "A": "Diabetes mellitus Typ 2",
+                        "B": "Leukämie",
+                        "C": "Papillon-Lefèvre-Syndrom",
+                        "D": "Arterielle Hypertonie"
+                    },
+                    "correct": "C",
+                    "explanation": "Das Papillon-Lefèvre-Syndrom ist eine seltene genetische Erkrankung, bei der Parodontitis als direkte Manifestation der Grunderkrankung auftritt. Es handelt sich um eine autosomal-rezessive Störung mit Hyperkeratose der Handflächen und Fußsohlen sowie frühzeitigem, schwerem Verlust des Milch- und bleibenden Gebisses durch aggressive Parodontitis."
+                },
+                {
+                    "id": 12,
+                    "question": "Welche hämatologische Erkrankung kann mit schwerer Gingivahyperplasie und parodontaler Destruktion einhergehen?",
+                    "options": {
+                        "A": "Eisenmangelanämie",
+                        "B": "Akute myeloische Leukämie",
+                        "C": "Vitamin-B12-Mangel",
+                        "D": "Polycythaemia vera"
+                    },
+                    "correct": "B",
+                    "explanation": "Bei akuter myeloischer Leukämie (AML) kann es zu massiver leukämischer Gingivahyperplasie durch Infiltration von Leukämiezellen kommen. Dies geht oft mit Ulzerationen, Blutungen und sekundären Infektionen einher. Die Gingiva erscheint geschwollen, bläulich-rot und blutet spontan."
+                },
+                {
+                    "id": 13,
+                    "question": "Welche genetische Erkrankung führt typischerweise zu frühzeitigem Zahnverlust durch schwere Parodontitis im Kindesalter?",
+                    "options": {
+                        "A": "Chediak-Higashi-Syndrom",
+                        "B": "Down-Syndrom",
+                        "C": "Marfan-Syndrom",
+                        "D": "Neurofibromatose"
+                    },
+                    "correct": "A",
+                    "explanation": "Das Chediak-Higashi-Syndrom ist eine seltene autosomal-rezessive Erkrankung mit gestörter Neutrophilenfunktion, die zu schwerer, früh einsetzender Parodontitis führt. Weitere Merkmale sind partielle Albinismus, rezidivierende Infektionen und neurologische Störungen. Auch das Down-Syndrom (B) zeigt erhöhte Parodontitisneigung, ist aber als sekundärer Risikofaktor zu werten."
+                },
+                {
+                    "id": 14,
+                    "question": "Welches Medikament verursacht am häufigsten medikamentös bedingte Gingivawucherungen?",
+                    "options": {
+                        "A": "Aspirin",
+                        "B": "Ciclosporin",
+                        "C": "Penicillin",
+                        "D": "Ibuprofen"
+                    },
+                    "correct": "B",
+                    "explanation": "Ciclosporin, ein Immunsuppressivum, verursacht bei bis zu 70% der Patienten Gingivahyperplasien. Die Wucherungen beginnen typischerweise interdental und können die Zahnkronen bedecken. Weitere klassische Auslöser sind Phenytoin (Antiepileptikum) und Kalziumkanalblocker wie Nifedipin."
+                },
+                {
+                    "id": 15,
+                    "question": "Welcher Kalziumkanalblocker ist besonders häufig mit Gingivahyperplasie assoziiert?",
+                    "options": {
+                        "A": "Amlodipin",
+                        "B": "Verapamil",
+                        "C": "Nifedipin",
+                        "D": "Diltiazem"
+                    },
+                    "correct": "C",
+                    "explanation": "Nifedipin ist der Kalziumkanalblocker mit der höchsten Inzidenz für medikamentös bedingte Gingivahyperplasien (bis zu 20% der Patienten). Die Wucherungen sind fibrotisch, schmerzlos und betreffen bevorzugt die anteriore Gingiva. Eine gute Mundhygiene kann die Ausprägung reduzieren."
+                },
+                {
+                    "id": 16,
+                    "question": "Was ist der Pathomechanismus medikamentös bedingter Gingivawucherungen?",
+                    "options": {
+                        "A": "Direkte bakterielle Infektion",
+                        "B": "Erhöhte Kollagensynthese und verminderte Kollagenase-Aktivität",
+                        "C": "Virale Transformation der Gingivazellen",
+                        "D": "Autoimmunreaktion gegen Gingivagewebe"
+                    },
+                    "correct": "B",
+                    "explanation": "Medikamentös bedingte Gingivawucherungen entstehen durch erhöhte Kollagensynthese bei gleichzeitig verminderter Kollagenase-Aktivität in Fibroblasten. Dies führt zu überschießender Bindegewebsproliferation. Plaque-induzierte Entzündung verstärkt die Hyperplasie zusätzlich, weshalb optimale Mundhygiene essentiell ist."
+                },
+                {
+                    "id": 17,
+                    "question": "Welche therapeutische Maßnahme ist bei schwerer medikamentös bedingter Gingivahyperplasie am wichtigsten?",
+                    "options": {
+                        "A": "Sofortiges Absetzen aller Medikamente ohne Rücksprache",
+                        "B": "Ausschließlich chirurgische Gingivektomie",
+                        "C": "Optimierung der Mundhygiene und ggf. Medikamentenwechsel in Absprache mit dem Arzt",
+                        "D": "Antibiotische Therapie allein"
+                    },
+                    "correct": "C",
+                    "explanation": "Die Basistherapie besteht in optimaler Mundhygiene und professioneller Plaqueentfernung. Ein Medikamentenwechsel sollte in Absprache mit dem behandelnden Arzt erwogen werden (z.B. von Nifedipin auf Amlodipin). Chirurgische Gingivektomie ist nur bei ausgeprägten Befunden und nach Optimierung der Mundhygiene indiziert, da sonst Rezidive häufig sind."
+                },
+                {
+                    "id": 18,
+                    "question": "Was ist das Hauptmerkmal eines parodontalen Abszesses?",
+                    "options": {
+                        "A": "Chronische, schmerzlose Schwellung",
+                        "B": "Akute, lokalisierte eitrige Infektion im Parodontalgewebe",
+                        "C": "Ausschließlich endodontischer Ursprung",
+                        "D": "Nur bei Zähnen ohne vorbestehende Parodontitis"
+                    },
+                    "correct": "B",
+                    "explanation": "Ein parodontaler Abszess ist definiert als akute, lokalisierte, eitrige Infektion im parodontalen Gewebe. Er manifestiert sich als schmerzhafte Schwellung, oft mit Pusaustritt, Perkussionsempfindlichkeit und gelegentlich Zahnlockerung. Er entsteht meist bei vorbestehenden tiefen parodontalen Taschen."
+                },
+                {
+                    "id": 19,
+                    "question": "Welcher Unterschied besteht zwischen einem parodontalen und einem periapikalen Abszess?",
+                    "options": {
+                        "A": "Parodontale Abszesse zeigen immer negative Vitalitätstests",
+                        "B": "Periapikale Abszesse gehen von pulpalem Ursprung aus, parodontale von der Tasche",
+                        "C": "Parodontale Abszesse sind immer schmerzlos",
+                        "D": "Es gibt keinen Unterschied"
+                    },
+                    "correct": "B",
+                    "explanation": "Der entscheidende Unterschied liegt im Ursprung: Periapikale Abszesse haben ihren Ursprung in der nekrotischen Pulpa und zeigen negative Vitalitätstests. Parodontale Abszesse entstehen aus parodontalen Taschen bei meist vitaler Pulpa. Die Differenzialdiagnose ist wichtig für die korrekte Therapieplanung."
+                },
+                {
+                    "id": 20,
+                    "question": "Was ist eine primäre endo-parodontale Läsion?",
+                    "options": {
+                        "A": "Eine Läsion, die von der Pulpa ausgeht und sich zum Parodont ausbreitet",
+                        "B": "Eine Läsion, die nur parodontal entsteht",
+                        "C": "Eine reversible Entzündung",
+                        "D": "Eine traumatische Verletzung"
+                    },
+                    "correct": "A",
+                    "explanation": "Eine primäre endo-parodontale Läsion hat ihren Ursprung in einer pulpalen Nekrose oder Entzündung, die über apikale Foramina, Seitenkanäle oder Dentintubuli zum Parodont fortschreitet. Dies führt zu parodontalen Taschen und Knochenabbau trotz initial vitaler parodontaler Strukturen. Die Pulpa ist devital."
+                },
+                {
+                    "id": 21,
+                    "question": "Welche Kommunikationswege ermöglichen die Entstehung endo-parodontaler Läsionen?",
+                    "options": {
+                        "A": "Nur über das apikale Foramen",
+                        "B": "Apikales Foramen, Seitenkanäle, Dentintubuli und Furkationskanäle",
+                        "C": "Ausschließlich durch Trauma",
+                        "D": "Nur durch externe Resorption"
+                    },
+                    "correct": "B",
+                    "explanation": "Endo-parodontale Läsionen können über verschiedene anatomische Verbindungen entstehen: das apikale Foramen, akzessorische Seitenkanäle (besonders im Furkationsbereich), freiliegende Dentintubuli und Furkationskanäle. Diese ermöglichen die Ausbreitung von Bakterien und Entzündungsmediatoren zwischen Pulpa und Parodont in beide Richtungen."
+                },
+                {
+                    "id": 22,
+                    "question": "Wie unterscheidet man eine primär endodontische von einer primär parodontalen Läsion mit sekundärer endodontischer Beteiligung?",
+                    "options": {
+                        "A": "Durch Vitalitätstest und Verlaufsanamnese",
+                        "B": "Nur durch histologische Untersuchung",
+                        "C": "Gar nicht möglich",
+                        "D": "Ausschließlich radiologisch"
+                    },
+                    "correct": "A",
+                    "explanation": "Die Unterscheidung erfolgt primär durch Vitalitätstest (bei endodontischem Ursprung negativ) und Anamnese (plötzliche vs. schleichende Entstehung). Primär endodontische Läsionen entstehen akut bei devitaler Pulpa, während primär parodontale Läsionen eine Historie von Parodontitis zeigen und die Pulpa erst im Spätstadium durch Progression der Infektion devital wird."
+                },
+                {
+                    "id": 23,
+                    "question": "Was ist ein Hauptziel der neuen Parodontitis-Klassifikation von 2018?",
+                    "options": {
+                        "A": "Trennung in aggressive und chronische Parodontitis",
+                        "B": "Multidimensionale Charakterisierung durch Staging und Grading",
+                        "C": "Ausschließliche Fokussierung auf Mikrobiologie",
+                        "D": "Vereinfachung auf nur zwei Kategorien"
+                    },
+                    "correct": "B",
+                    "explanation": "Die 2018er Klassifikation führte ein multidimensionales System ein: Staging beschreibt Schweregrad und Ausdehnung der Erkrankung, Grading bewertet Progressionsrisiko und biologische Merkmale. Die alte Einteilung in 'aggressiv' vs. 'chronisch' wurde aufgegeben, da sie nicht evidenzbasiert war und die Komplexität nicht abbildete."
+                },
+                {
+                    "id": 24,
+                    "question": "Was beschreibt das Staging in der Parodontitis-Klassifikation 2018?",
+                    "options": {
+                        "A": "Die Progressionsgeschwindigkeit der Erkrankung",
+                        "B": "Schweregrad und Komplexität der Erkrankung zum Untersuchungszeitpunkt",
+                        "C": "Die mikrobiologische Zusammensetzung",
+                        "D": "Ausschließlich das Patientenalter"
+                    },
+                    "correct": "B",
+                    "explanation": "Das Staging (Stadien I-IV) beschreibt den Schweregrad und die Komplexität der Parodontitis zum Untersuchungszeitpunkt. Hauptkriterien sind interdentaler Attachmentverlust, röntgenologischer Knochenabbau und Zahnverlust durch Parodontitis. Zusätzliche Komplexitätsfaktoren wie Furkationsbefall, Zahnbeweglichkeit und Bissprobleme werden berücksichtigt."
+                },
+                {
+                    "id": 25,
+                    "question": "Was beschreibt das Grading in der Parodontitis-Klassifikation 2018?",
+                    "options": {
+                        "A": "Die aktuelle Taschentiefe",
+                        "B": "Das Progressionsrisiko und biologische Modifikatoren der Erkrankung",
+                        "C": "Die Anzahl fehlender Zähne",
+                        "D": "Nur das Rauchverhalten"
+                    },
+                    "correct": "B",
+                    "explanation": "Das Grading (Grade A, B, C) bewertet das Progressionsrisiko und biologische Charakteristika der Erkrankung. Hauptkriterien sind direkte oder indirekte Progressionsindikatoren (Knochenabbau im Verhältnis zum Alter, Phänotyp). Modifikatoren wie Diabetes und Rauchen werden berücksichtigt. Grade C bedeutet hohes Progressionsrisiko, Grade A niedriges Risiko."
+                }
+            ]
+        };
+
+        const state = {
+            currentIndex: 0,
+            answers: {},
+            score: 0,
+            displayedQuestions: [],
+            pendingSlots: []
+        };
+
+        const questionsRow = document.getElementById('questionsRow');
+        const progressBar = document.getElementById('progressBar');
+        const progressBadge = document.getElementById('progressBadge');
+        const scoreBadge = document.getElementById('scoreBadge');
+        const resultsCard = document.getElementById('resultsCard');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function initQuiz() {
+            state.currentIndex = 0;
+            state.answers = {};
+            state.score = 0;
+            state.displayedQuestions = [];
+            state.pendingSlots = [];
+
+            resultsCard.classList.remove('show');
+            questionsRow.style.display = 'grid';
+            nextBtn.classList.remove('show');
+
+            // Show first 3 questions
+            for (let i = 0; i < 3 && i < quizData.questions.length; i++) {
+                state.displayedQuestions.push(i);
+            }
+            state.currentIndex = Math.min(3, quizData.questions.length);
+
+            renderQuestions();
+            updateStats();
+        }
+
+        function renderQuestions() {
+            questionsRow.innerHTML = '';
+
+            state.displayedQuestions.forEach((qIdx, slot) => {
+                const q = quizData.questions[qIdx];
+                const answered = state.answers[q.id] !== undefined;
+                const isCorrect = answered && state.answers[q.id] === q.correct;
+                const isIncorrect = answered && state.answers[q.id] !== q.correct;
+
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                if (isCorrect) card.classList.add('correct-card', 'answered');
+                if (isIncorrect) card.classList.add('incorrect-card', 'answered');
+
+                card.innerHTML = `
+                    <div class="q-header">
+                        <span class="q-number">Q${qIdx + 1}</span>
+                        ${answered ? `<span class="q-status">${isCorrect ? '&#10004;' : '&#10008;'}</span>` : ''}
+                    </div>
+                    <div class="q-text">${q.question}</div>
+                    <div class="options" data-qid="${q.id}" data-slot="${slot}">
+                        ${['A','B','C','D'].map(letter => {
+                            let optClass = 'option-btn';
+                            if (answered) {
+                                optClass += ' disabled';
+                                if (letter === q.correct) optClass += ' correct';
+                                else if (letter === state.answers[q.id]) optClass += ' incorrect';
+                            }
+                            return `
+                                <button class="${optClass}" data-letter="${letter}" ${answered ? 'disabled' : ''}>
+                                    <span class="option-letter">${letter}</span>
+                                    <span class="option-text">${q.options[letter]}</span>
+                                </button>
+                            `;
+                        }).join('')}
+                    </div>
+                    <div class="feedback ${answered ? 'show' : ''} ${isCorrect ? 'correct' : 'incorrect'}">
+                        ${answered ? (isCorrect ? '&#10004; ' : `&#10008; Antwort: ${q.correct}. `) + q.explanation : ''}
+                    </div>
+                `;
+
+                // Add click handlers
+                if (!answered) {
+                    card.querySelectorAll('.option-btn').forEach(btn => {
+                        btn.addEventListener('click', () => handleAnswer(qIdx, slot, btn.dataset.letter));
+                    });
+                }
+
+                questionsRow.appendChild(card);
+            });
+
+            renderMath();
+        }
+
+        function handleAnswer(qIdx, slot, letter) {
+            const q = quizData.questions[qIdx];
+            state.answers[q.id] = letter;
+
+            if (letter === q.correct) state.score++;
+
+            // Track this slot as pending replacement
+            if (!state.pendingSlots.includes(slot)) {
+                state.pendingSlots.push(slot);
+            }
+
+            updateStats();
+            renderQuestions();
+
+            // Check if all questions answered
+            const answered = Object.keys(state.answers).length;
+            if (answered >= quizData.questions.length) {
+                // Short delay then show results
+                setTimeout(showResults, 800);
+            } else if (state.currentIndex < quizData.questions.length && state.pendingSlots.length > 0) {
+                // Show Next button if there are more questions and pending slots
+                nextBtn.classList.add('show');
+            }
+        }
+
+        function loadNextQuestions() {
+            // Replace pending slots with new questions
+            while (state.pendingSlots.length > 0 && state.currentIndex < quizData.questions.length) {
+                const slot = state.pendingSlots.shift();
+                state.displayedQuestions[slot] = state.currentIndex;
+                state.currentIndex++;
+            }
+
+            // Hide Next button
+            nextBtn.classList.remove('show');
+
+            renderQuestions();
+
+            // Check if quiz is complete (all displayed questions answered)
+            const answered = Object.keys(state.answers).length;
+            if (answered >= quizData.questions.length) {
+                setTimeout(showResults, 500);
+            }
+        }
+
+        function updateStats() {
+            const answered = Object.keys(state.answers).length;
+            const total = quizData.questions.length;
+
+            progressBar.style.width = `${(answered / total) * 100}%`;
+            progressBadge.textContent = `${answered}/${total}`;
+            scoreBadge.textContent = `Ergebnis: ${state.score}`;
+        }
+
+        function showResults() {
+            questionsRow.style.display = 'none';
+            nextBtn.classList.remove('show');
+            resultsCard.classList.add('show');
+
+            const total = quizData.questions.length;
+            const percentage = Math.round((state.score / total) * 100);
+
+            document.getElementById('resultsScore').textContent = `${state.score}/${total}`;
+
+            let grade, gradeClass, icon;
+            if (percentage >= 90) { grade = 'Ausgezeichnet! A'; gradeClass = 'grade-a'; icon = '&#127942;'; }
+            else if (percentage >= 80) { grade = 'Sehr gut! B'; gradeClass = 'grade-b'; icon = '&#11088;'; }
+            else if (percentage >= 70) { grade = 'Gut! C'; gradeClass = 'grade-c'; icon = '&#128077;'; }
+            else if (percentage >= 60) { grade = 'Bestanden - D'; gradeClass = 'grade-d'; icon = '&#128221;'; }
+            else { grade = 'Weiter üben!'; gradeClass = 'grade-f'; icon = '&#128218;'; }
+
+            document.getElementById('resultsIcon').innerHTML = icon;
+            const gradeEl = document.getElementById('resultsGrade');
+            gradeEl.textContent = `${grade} (${percentage}%)`;
+            gradeEl.className = `results-grade ${gradeClass}`;
+        }
+
+        function restartQuiz() {
+            initQuiz();
+        }
+
+        function renderMath() {
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initQuiz();
+            setTimeout(renderMath, 100);
+        });
+    </script>
+</body>
+</html>

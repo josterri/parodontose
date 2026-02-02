@@ -1,0 +1,306 @@
+{
+  "lesson": "P03",
+  "title": "Behandlung",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Welche Phase der systematischen Parodontitistherapie umfasst die Motivierung des Patienten zur optimalen Mundhygiene und die professionelle Zahnreinigung?",
+      "options": {
+        "A": "Korrektive Phase",
+        "B": "Unterstützende Parodontitistherapie (UPT)",
+        "C": "Initialphase",
+        "D": "Regenerative Phase"
+      },
+      "correct": "C",
+      "explanation": "Die Initialphase (auch antiinfektiöse Phase genannt) steht am Beginn der systematischen Parodontitistherapie. Sie umfasst die Mundhygieneinstruktion (MHI), die Motivation des Patienten, die professionelle Zahnreinigung (PZR) sowie das subgingivale Scaling und Root Planing (SRP). Ziel ist die Reduktion der bakteriellen Belastung und die Etablierung einer optimalen häuslichen Mundhygiene."
+    },
+    {
+      "id": 2,
+      "question": "Nach welchem Zeitraum erfolgt üblicherweise die Reevaluation nach der Initialphase, um über weitere therapeutische Maßnahmen zu entscheiden?",
+      "options": {
+        "A": "2-4 Wochen",
+        "B": "6-8 Wochen",
+        "C": "3-4 Monate",
+        "D": "6 Monate"
+      },
+      "correct": "B",
+      "explanation": "Die Reevaluation erfolgt typischerweise 6-8 Wochen nach Abschluss der Initialphase. In diesem Zeitraum hat sich das Gewebe ausreichend regeneriert, und es kann beurteilt werden, ob die konservative Therapie erfolgreich war oder ob weiterführende Maßnahmen (z.B. chirurgische Therapie in der korrektiven Phase) notwendig sind. Kriterien sind Sondierungstiefen, Blutung auf Sondierung und klinisches Attachmentlevel."
+    },
+    {
+      "id": 3,
+      "question": "Welche Aussage zur korrektiven Phase der Parodontitistherapie ist korrekt?",
+      "options": {
+        "A": "Sie wird bei allen Patienten routinemäßig durchgeführt",
+        "B": "Sie beinhaltet ausschließlich regenerative Verfahren",
+        "C": "Sie kommt zum Einsatz, wenn nach der Initialphase noch Taschen ≥6 mm bestehen",
+        "D": "Sie ersetzt die Initialphase bei schwerer Parodontitis"
+      },
+      "correct": "C",
+      "explanation": "Die korrektive Phase wird nur bei Bedarf durchgeführt, wenn nach der Reevaluation der Initialphase noch Resttaschen von ≥6 mm bestehen oder andere Indikationen für chirurgische Eingriffe vorliegen. Sie umfasst sowohl resektive als auch regenerative chirurgische Verfahren. Die Entscheidung basiert auf der individuellen Situation und den Erfolgsaussichten weiterer Therapiemaßnahmen."
+    },
+    {
+      "id": 4,
+      "question": "Was ist das primäre Ziel der Mundhygieneinstruktion (MHI) in der Parodontitistherapie?",
+      "options": {
+        "A": "Verkauf von Mundhygieneprodukten",
+        "B": "Befähigung des Patienten zur effektiven Plaquekontrolle",
+        "C": "Ersatz der professionellen Zahnreinigung",
+        "D": "Reduktion der Behandlungskosten"
+      },
+      "correct": "B",
+      "explanation": "Die Mundhygieneinstruktion hat zum Ziel, den Patienten zu befähigen, eigenständig eine effektive Plaquekontrolle durchzuführen. Dies ist die Grundvoraussetzung für den langfristigen Erfolg jeder Parodontitistherapie. Der Patient erlernt korrekte Putztechniken, den Einsatz von Interdentalraumbürsten und anderen Hilfsmitteln. Ohne ausreichende häusliche Mundhygiene ist keine nachhaltige Verbesserung der parodontalen Situation möglich."
+    },
+    {
+      "id": 5,
+      "question": "Welcher Parameter wird zur Evaluierung der Qualität der häuslichen Mundhygiene verwendet?",
+      "options": {
+        "A": "Bleeding on Probing (BOP)",
+        "B": "Plaqueindex nach O'Leary",
+        "C": "Approximal Plaque Index (API)",
+        "D": "Community Periodontal Index (CPI)"
+      },
+      "correct": "C",
+      "explanation": "Der Approximal Plaque Index (API) nach Lange ist der gebräuchlichste Index zur Beurteilung der häuslichen Mundhygiene. Er erfasst das Vorhandensein von Plaque an den Approximalräumen, da diese Bereiche besonders anfällig für Plaqueakkumulation sind. Ein API-Wert unter 25% wird als ausreichende Mundhygiene angesehen. Der BOP hingegen ist ein Entzündungsparameter, während der CPI ein Screening-Index ist."
+    },
+    {
+      "id": 6,
+      "question": "Welche Aussage zur professionellen Zahnreinigung (PZR) ist korrekt?",
+      "options": {
+        "A": "Sie ersetzt das subgingivale Scaling",
+        "B": "Sie umfasst nur die supragingivale Zahnsteinentfernung",
+        "C": "Sie beinhaltet die Entfernung supra- und subgingivaler Beläge sowie Politur",
+        "D": "Sie ist ausschließlich eine präventive Maßnahme ohne therapeutischen Wert"
+      },
+      "correct": "C",
+      "explanation": "Die professionelle Zahnreinigung (PZR) ist ein integraler Bestandteil der Initialphase und umfasst die Entfernung aller harten und weichen Beläge sowohl supra- als auch subgingival (bis ca. 3-4 mm Taschentiefe), die Politur der Zahnoberflächen und gegebenenfalls die Fluoridierung. Sie dient der Reduktion der bakteriellen Belastung und schafft glatte Oberflächen, die eine Plaqueanlagerung erschweren. Das tiefe subgingivale Scaling bei Taschen >4 mm erfolgt jedoch als separate Maßnahme."
+    },
+    {
+      "id": 7,
+      "question": "Welches Instrument ist NICHT typischerweise Teil der professionellen Zahnreinigung?",
+      "options": {
+        "A": "Ultraschallscaler",
+        "B": "Airflow-Gerät",
+        "C": "Gracey-Küretten",
+        "D": "Parodontalchirurgisches Skalpell"
+      },
+      "correct": "D",
+      "explanation": "Das parodontalchirurgische Skalpell wird in der korrektiven (chirurgischen) Phase eingesetzt, nicht bei der professionellen Zahnreinigung. Zur PZR gehören Ultraschallscaler zur Zahnsteinentfernung, Airflow-Geräte zur Entfernung von Verfärbungen und weichen Belägen, sowie Küretten zur manuellen Reinigung. Gracey-Küretten werden auch beim subgingivalen Scaling eingesetzt, können aber bei der PZR für moderate Taschentiefen verwendet werden."
+    },
+    {
+      "id": 8,
+      "question": "Was ist das Hauptziel des Scaling und Root Planing (SRP)?",
+      "options": {
+        "A": "Ästhetische Aufhellung der Zahnwurzeln",
+        "B": "Entfernung des subgingivalen Biofilms und Wurzelzements",
+        "C": "Glättung der Zahnkronen",
+        "D": "Versiegelung der Wurzeloberfläche"
+      },
+      "correct": "B",
+      "explanation": "Das subgingivale Scaling und Root Planing (Wurzelglättung) ist die Kerntechnik der nicht-chirurgischen Parodontitistherapie. Ziel ist die vollständige Entfernung des pathogenen subgingivalen Biofilms, des kontaminierten Wurzelzements und des subgingivalen Zahnsteins. Die glatte Wurzeloberfläche erschwert die erneute Bakterienbesiedlung und fördert die Heilung des parodontalen Gewebes mit Reduktion der Taschentiefe."
+    },
+    {
+      "id": 9,
+      "question": "Welches Konzept beschreibt die Durchführung des subgingivalen SRP an allen Zähnen innerhalb von 24 Stunden unter zusätzlicher Verwendung von Chlorhexidin?",
+      "options": {
+        "A": "Quadrantenweise Therapie",
+        "B": "Full-Mouth-Disinfection (FMD)",
+        "C": "Stage-Approach-Therapie",
+        "D": "Guided Biofilm Therapy"
+      },
+      "correct": "B",
+      "explanation": "Die Full-Mouth-Disinfection (FMD) nach Quirynen ist ein Therapiekonzept, bei dem das gesamte subgingivale SRP innerhalb von 24 Stunden durchgeführt wird, kombiniert mit intensiver Chlorhexidin-Anwendung (Mundspülung, Zungenreinigung, Tonsillenbürstung). Das Ziel ist die Vermeidung einer Reinfektion bereits behandelter Taschen durch Bakterien aus noch unbehandelten Bereichen. Studien zeigen bei bestimmten Patientengruppen Vorteile gegenüber der quadrantenweisen Therapie."
+    },
+    {
+      "id": 10,
+      "question": "Welche Aussage zum Einsatz von Handinstrumenten versus Ultraschall beim SRP ist korrekt?",
+      "options": {
+        "A": "Handinstrumente sind in allen Situationen überlegen",
+        "B": "Ultraschall ist kontraindiziert bei Parodontitistherapie",
+        "C": "Beide Methoden zeigen vergleichbare klinische Ergebnisse",
+        "D": "Nur maschinelle Instrumente dürfen subgingival eingesetzt werden"
+      },
+      "correct": "C",
+      "explanation": "Zahlreiche Studien haben gezeigt, dass sowohl Hand- als auch maschinelle Instrumente (Ultraschall, Schall) beim subgingivalen Scaling vergleichbare klinische Ergebnisse erzielen, wenn sie von erfahrenen Behandlern eingesetzt werden. Die Wahl hängt von der klinischen Situation, der Erfahrung des Behandlers und den Patientenpräferenzen ab. Oft wird eine Kombination beider Methoden verwendet. Ultraschall hat Vorteile bei großen Konkrementen, Handinstrumente bei schwer zugänglichen Bereichen."
+    },
+    {
+      "id": 11,
+      "question": "Welches lokale Antibiotikum wird in Form eines resorbierbaren Chips in Parodontaltaschen appliziert?",
+      "options": {
+        "A": "Amoxicillin",
+        "B": "Doxycyclin",
+        "C": "Metronidazol",
+        "D": "Chlorhexidin"
+      },
+      "correct": "D",
+      "explanation": "Der PerioChip ist ein Chlorhexidin-haltiger resorbierbarer Chip (2,5 mg Chlorhexidindigluconat), der adjuvant nach SRP in Resttaschen ≥5 mm eingebracht werden kann. Chlorhexidin ist ein Antiseptikum (kein Antibiotikum im engeren Sinne), das über etwa 7 Tage kontinuierlich in hoher Konzentration freigesetzt wird. Es zeigt eine breite antimikrobielle Wirkung. Die Evidenz für signifikante zusätzliche klinische Verbesserungen ist jedoch begrenzt."
+    },
+    {
+      "id": 12,
+      "question": "Welche systemische Antibiotikakombination wird am häufigsten adjuvant bei schwerer, generalisierter Parodontitis eingesetzt?",
+      "options": {
+        "A": "Penicillin + Tetracyclin",
+        "B": "Amoxicillin + Metronidazol",
+        "C": "Erythromycin + Ciprofloxacin",
+        "D": "Azithromycin + Doxycyclin"
+      },
+      "correct": "B",
+      "explanation": "Die Kombination Amoxicillin (500 mg, 3x täglich) + Metronidazol (400-500 mg, 2-3x täglich) über 7 Tage ist die am besten untersuchte und am häufigsten empfohlene systemische Antibiotikatherapie bei Parodontitis. Amoxicillin wirkt gegen grampositive und viele gramnegative Bakterien, Metronidazol speziell gegen Anaerobier. Diese Kombination zeigt synergistische Effekte besonders bei schwerer, generalisierter Parodontitis und kann das klinische Ergebnis des SRP verbessern."
+    },
+    {
+      "id": 13,
+      "question": "Wann ist der optimale Zeitpunkt für die Gabe systemischer Antibiotika in der Parodontitistherapie?",
+      "options": {
+        "A": "Vor Beginn jeglicher Therapie",
+        "B": "Gleichzeitig mit oder unmittelbar nach dem subgingivalen SRP",
+        "C": "Erst in der korrektiven Phase",
+        "D": "Während der UPT bei jedem Recall"
+      },
+      "correct": "B",
+      "explanation": "Systemische Antibiotika sollten gleichzeitig mit oder unmittelbar nach dem subgingivalen Scaling und Root Planing gegeben werden, idealerweise innerhalb der Full-Mouth-Disinfection. Das vorherige mechanische Debridement reduziert die Bakterienmasse und ermöglicht den Antibiotika besseren Zugang zu den verbleibenden Bakterien. Eine Antibiotikagabe ohne mechanische Reinigung ist ineffektiv. Indikationen sind aggressive/schwere Parodontitis, refraktäre Verläufe oder spezifische mikrobiologische Befunde."
+    },
+    {
+      "id": 14,
+      "question": "Welches ist eine Hauptindikation für eine chirurgische Parodontitistherapie (Lappenoperation)?",
+      "options": {
+        "A": "Alle Taschen >3 mm Sondierungstiefe",
+        "B": "Resttaschen ≥6 mm nach erfolgloser konservativer Therapie",
+        "C": "Gingivitis",
+        "D": "Ausschließlich bei Rezessionen"
+      },
+      "correct": "B",
+      "explanation": "Eine Lappenoperation ist indiziert, wenn nach der Initialphase und Reevaluation Resttaschen von ≥6 mm persistieren, insbesondere wenn diese mit Blutung auf Sondierung (BOP) einhergehen. Bei diesen Tiefen ist eine geschlossene mechanische Reinigung oft unzureichend. Die Lappenoperation ermöglicht direkte Sicht auf die Wurzeloberflächen und Knochendefekte, bessere Reinigung und gegebenenfalls regenerative oder resektive Maßnahmen."
+    },
+    {
+      "id": 15,
+      "question": "Welche Aussage zu resektiven parodontalchirurgischen Verfahren ist korrekt?",
+      "options": {
+        "A": "Sie zielen auf die Regeneration verlorenen Attachments ab",
+        "B": "Sie umfassen Osteoplastik und Ostektomie zur Taschenelimination",
+        "C": "Sie sind die First-Line-Therapie bei allen Parodontitisformen",
+        "D": "Sie führen immer zu ästhetisch optimalen Ergebnissen"
+      },
+      "correct": "B",
+      "explanation": "Resektive Verfahren zielen auf die Elimination von Taschen durch Anpassung von Hart- und Weichgewebe ab. Osteoplastik (Umformung des Knochens ohne Abtragung) und Ostektomie (Knochenresektion) schaffen eine physiologische Knochenarchitektur. Indikationen sind horizontaler Knochenabbau oder ungünstige Knochendefekte. Nachteile sind Rezessionen und Verlust von Attachment. Sie werden heute zurückhaltender eingesetzt als früher, da regenerative Verfahren bevorzugt werden."
+    },
+    {
+      "id": 16,
+      "question": "Was ist der wesentliche Vorteil der offenen (chirurgischen) gegenüber der geschlossenen (nicht-chirurgischen) Parodontitistherapie?",
+      "options": {
+        "A": "Keine Anästhesie erforderlich",
+        "B": "Direkte Sicht auf Wurzeloberflächen und Knochendefekte",
+        "C": "Kürzere Behandlungsdauer",
+        "D": "Keine postoperativen Beschwerden"
+      },
+      "correct": "B",
+      "explanation": "Der Hauptvorteil der offenen Lappenoperation ist die direkte visuelle und instrumentelle Zugänglichkeit zu den Wurzeloberflächen und Knochendefekten. Dies ermöglicht eine gründlichere Entfernung von Konkrementen und Granulationsgewebe, präzisere Wurzelglättung und gezielte regenerative oder resektive Maßnahmen. Die Reinigungsqualität ist bei tiefen Taschen der geschlossenen Therapie überlegen, jedoch mit höherer Invasivität und postoperativen Beschwerden verbunden."
+    },
+    {
+      "id": 17,
+      "question": "Was ist das Prinzip der Guided Tissue Regeneration (GTR)?",
+      "options": {
+        "A": "Implantation von Knochenersatzmaterial",
+        "B": "Verwendung einer Membran zur selektiven Zellrepopulation",
+        "C": "Applikation von Antibiotika in den Defekt",
+        "D": "Lasertherapie zur Gewebestimulation"
+      },
+      "correct": "B",
+      "explanation": "Die Guided Tissue Regeneration (GTR) basiert auf dem Prinzip der selektiven Zellrepopulation. Eine resorbierbare oder nicht-resorbierbare Membran wird über dem Knochendefekt platziert, um schnell wachsendes Epithel- und Bindegewebe von der Wurzeloberfläche fernzuhalten. Dies ermöglicht den langsamer proliferierenden parodontalen Ligamentzellen und Osteoblasten, die Wurzeloberfläche zu besiedeln und neues Attachment (Zement, PDL, Knochen) zu bilden. GTR ist besonders erfolgreich bei tiefen, schmalen Defekten."
+    },
+    {
+      "id": 18,
+      "question": "Welcher Bestandteil ist der aktive Wirkstoff in Emdogain?",
+      "options": {
+        "A": "Bone Morphogenetic Protein (BMP)",
+        "B": "Platelet-Derived Growth Factor (PDGF)",
+        "C": "Schmelzmatrixproteine (amelogenin-reich)",
+        "D": "Fibrin"
+      },
+      "correct": "C",
+      "explanation": "Emdogain enthält Schmelzmatrixproteine (EMD = Enamel Matrix Derivative), die hauptsächlich aus Amelogenin bestehen und aus Schweinezahnkeimen gewonnen werden. Diese Proteine imitieren die embryonale Zahnentwicklung und stimulieren die Regeneration parodontaler Gewebe (Zement, PDL, Knochen). Emdogain wird als Gel auf die gereinigte Wurzeloberfläche aufgetragen und hat sich besonders bei Furkationsbeteiligung Grad II und intrabony Defekten bewährt."
+    },
+    {
+      "id": 19,
+      "question": "Welche Aussage zu Knochenersatzmaterialien in der regenerativen Parodontaltherapie ist korrekt?",
+      "options": {
+        "A": "Sie sind immer autologen Transplantaten überlegen",
+        "B": "Sie können osteokonduktiv wirken und als Leitschiene für Knochenbildung dienen",
+        "C": "Sie sind bei allen Defektformen gleich erfolgreich",
+        "D": "Sie regenerieren direkt parodontales Attachment"
+      },
+      "correct": "B",
+      "explanation": "Knochenersatzmaterialien (allogen, xenogen oder alloplastisch) wirken primär osteokonduktiv, d.h. sie dienen als dreidimensionale Leitschiene für einwachsende Knochenzellen. Sie stabilisieren das Blutkoagulum und erhalten das Volumen des Defekts. Autologer Knochen hat zusätzlich osteoinduktive und osteogene Eigenschaften. Knochenersatzmaterialien allein führen meist zu Knochenersatz, nicht aber zwingend zu neuem parodontalem Attachment. Beste Ergebnisse bei Kombination mit GTR-Membranen oder EMD bei tiefen, schmalen Defekten."
+    },
+    {
+      "id": 20,
+      "question": "Welches Intervall wird für die Unterstützende Parodontitistherapie (UPT) bei Patienten mit niedrigem Risiko typischerweise empfohlen?",
+      "options": {
+        "A": "Monatlich",
+        "B": "3 Monate",
+        "C": "6 Monate",
+        "D": "12 Monate"
+      },
+      "correct": "C",
+      "explanation": "Bei Patienten mit niedrigem Risikoprofil (gute Mundhygiene, keine Resttaschen >4 mm, stabile Situation, Nichtraucher, keine systemischen Risikofaktoren) wird ein UPT-Intervall von 6 Monaten empfohlen. Hochrisikopatienten benötigen kürzere Intervalle (3 Monate oder häufiger). Das Intervall wird individuell basierend auf dem Risikoprofil, der parodontalen Stabilität und der Compliance des Patienten festgelegt. Die UPT ist essentiell für den langfristigen Therapieerfolg."
+    },
+    {
+      "id": 21,
+      "question": "Was ist NICHT Bestandteil einer typischen UPT-Sitzung?",
+      "options": {
+        "A": "Remotivation zur Mundhygiene",
+        "B": "Sondierung und Erhebung parodontaler Parameter",
+        "C": "Subgingivales Scaling bei Bedarf",
+        "D": "Routinemäßige chirurgische Lappenbildung"
+      },
+      "correct": "D",
+      "explanation": "Eine UPT-Sitzung umfasst: Anamnese, Erhebung parodontaler Befunde (Sondierung, BOP, Plaque), Remotivation zur Mundhygiene, professionelle Zahnreinigung und bei Bedarf subgingivales Scaling an Problemstellen. Chirurgische Maßnahmen gehören nicht zur Routine-UPT, sondern würden nur bei signifikanter Verschlechterung und nach erneuter Diagnostik erfolgen. Die UPT zielt auf Erhaltung des erreichten Therapieerfolgs durch regelmäßige Kontrolle und Reinigung ab."
+    },
+    {
+      "id": 22,
+      "question": "Welcher Parameter dient primär der Risikostratifizierung für das UPT-Intervall?",
+      "options": {
+        "A": "Alter des Patienten",
+        "B": "Anzahl verlorener Zähne, Resttaschentiefen, Blutungsindex, Risikofaktoren",
+        "C": "Anzahl der Füllungen",
+        "D": "Ausschließlich die Mundhygiene"
+      },
+      "correct": "B",
+      "explanation": "Die Risikostratifizierung erfolgt multifaktoriell. Wichtige Parameter sind: Anzahl verlorener Zähne durch Parodontitis, Anzahl und Tiefe von Resttaschen ≥5 mm, Blutung auf Sondierung (BOP), Knochen-Zahn-Verhältnis, genetische Faktoren, Mundhygiene-Qualität, Rauchen, Diabetes und Compliance. Verschiedene Risiko-Assessment-Tools (z.B. nach Lang & Tonetti) helfen, Patienten in niedrige, moderate oder hohe Risikokategorien einzuteilen und entsprechende UPT-Intervalle festzulegen."
+    },
+    {
+      "id": 23,
+      "question": "Welche Aussage zum Einfluss des Rauchens auf die Parodontitistherapie ist korrekt?",
+      "options": {
+        "A": "Rauchen hat keinen Einfluss auf den Therapieerfolg",
+        "B": "Raucher zeigen schlechtere Therapieergebnisse und höhere Rezidivraten",
+        "C": "Rauchen verbessert die Wundheilung nach Parodontalchirurgie",
+        "D": "Nur Zigarren, nicht Zigaretten, sind problematisch"
+      },
+      "correct": "B",
+      "explanation": "Rauchen ist der bedeutendste modifizierbare Risikofaktor für Parodontitis. Raucher zeigen signifikant schlechtere Ergebnisse nach nicht-chirurgischer und chirurgischer Therapie, geringere Taschenreduktion, weniger Attachmentgewinn, schlechtere Wundheilung, höhere Rezidivraten und schlechtere Langzeitprognose. Mechanismen umfassen Vasokonstriktion, Immunsuppression, veränderte Bakterienflora und verminderte Fibroblasten-Funktion. Raucherentwöhnung sollte integraler Bestandteil der Parodontitistherapie sein."
+    },
+    {
+      "id": 24,
+      "question": "Welche Beziehung besteht zwischen Diabetes mellitus und Parodontitis?",
+      "options": {
+        "A": "Keine nachweisbare Beziehung",
+        "B": "Diabetes ist nur ein Risikofaktor für Gingivitis, nicht für Parodontitis",
+        "C": "Bidirektionale Beziehung: Diabetes verschlechtert Parodontitis, Parodontitis erschwert Blutzuckerkontrolle",
+        "D": "Parodontitis verursacht Diabetes"
+      },
+      "correct": "C",
+      "explanation": "Diabetes mellitus und Parodontitis stehen in bidirektionaler Beziehung. Diabetes (besonders bei schlechter Einstellung mit HbA1c >7%) erhöht das Risiko für Parodontitis und deren Progression um das 2-3fache. Umgekehrt erschwert eine aktive Parodontitis die Blutzuckerkontrolle. Die erfolgreiche Parodontitistherapie kann zu einer Reduktion des HbA1c um 0,4-0,7% führen. Mechanismen umfassen chronische Entzündung, AGEs (Advanced Glycation End Products) und veränderte Immunantwort. Interdisziplinäre Zusammenarbeit ist wichtig."
+    },
+    {
+      "id": 25,
+      "question": "Welcher HbA1c-Wert wird als Grenzwert betrachtet, ab dem das Risiko für parodontale Komplikationen deutlich steigt?",
+      "options": {
+        "A": "5,0%",
+        "B": "6,5%",
+        "C": "7,0%",
+        "D": "9,0%"
+      },
+      "correct": "C",
+      "explanation": "Ein HbA1c-Wert von 7,0% gilt als kritischer Grenzwert für das parodontale Risiko. Bei Werten darüber steigt das Risiko für Parodontitis, schwerere Verläufe und schlechtere Therapieergebnisse signifikant an. Bei schlecht eingestellten Diabetikern (HbA1c >7%) sollten elektive parodontalchirurgische Eingriffe erst nach Optimierung der Blutzuckereinstellung erfolgen. Bei HbA1c >9% ist die Wundheilung deutlich kompromittiert. Die regelmäßige Bestimmung des HbA1c ist daher wichtiger Bestandteil der parodontalen Risikobeurteilung bei Diabetikern."
+    }
+  ]
+}

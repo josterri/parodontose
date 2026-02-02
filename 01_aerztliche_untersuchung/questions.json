@@ -1,0 +1,306 @@
+{
+  "lesson": "P01",
+  "title": "Ärztliche Untersuchung",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Welche Angaben in der Anamnese sind für die parodontale Diagnostik besonders wichtig?",
+      "options": {
+        "A": "Nur die Zahnputzgewohnheiten des Patienten",
+        "B": "Systemische Erkrankungen, Medikamenteneinnahme, Raucherstatus und Familienanamnese",
+        "C": "Ausschließlich frühere zahnärztliche Behandlungen",
+        "D": "Nur allergische Reaktionen auf Lokalanästhetika"
+      },
+      "correct": "B",
+      "explanation": "Eine umfassende Anamnese muss systemische Erkrankungen (insbesondere Diabetes mellitus), Medikation (z.B. Immunsuppressiva, Bisphosphonate), Raucherstatus und genetische Prädisposition erfassen. Diese Faktoren beeinflussen das Parodontitisrisiko und den Behandlungserfolg maßgeblich."
+    },
+    {
+      "id": 2,
+      "question": "Ein Patient berichtet über Zahnfleischbluten beim Zähneputzen. Was ist der wichtigste anamnestische Aspekt?",
+      "options": {
+        "A": "Die Marke der verwendeten Zahnbürste",
+        "B": "Dauer, Häufigkeit und mögliche Auslöser der Blutung sowie Begleitsymptome",
+        "C": "Die Tageszeit des Zähneputzens",
+        "D": "Die Zimmertemperatur beim Zähneputzen"
+      },
+      "correct": "B",
+      "explanation": "Wichtig ist die systematische Erfassung von Dauer (seit wann?), Häufigkeit (spontan oder nur bei Provokation?), Auslösern und Begleitsymptomen wie Schmerzen oder Schwellungen. Dies hilft bei der Differenzierung zwischen Gingivitis und Parodontitis sowie bei der Identifikation systemischer Ursachen."
+    },
+    {
+      "id": 3,
+      "question": "Warum ist die Erfassung des Raucherstatus in der parodontalen Anamnese essenziell?",
+      "options": {
+        "A": "Rauchen hat keinen Einfluss auf parodontale Erkrankungen",
+        "B": "Rauchen ist der wichtigste beeinflussbare Risikofaktor für Parodontitis und beeinflusst Therapieerfolg negativ",
+        "C": "Nur wegen der Verfärbung der Zähne",
+        "D": "Ausschließlich für die Kariesdiagnostik relevant"
+      },
+      "correct": "B",
+      "explanation": "Rauchen ist der wichtigste modifizierbare Risikofaktor für Parodontitis. Raucher haben ein 2,5-6-fach erhöhtes Risiko, schlechtere Heilungsraten und mehr Zahnverlust. Nikotin beeinträchtigt die Immunabwehr, reduziert die Durchblutung des Zahnfleisches und maskiert Entzündungssymptome (weniger Blutung)."
+    },
+    {
+      "id": 4,
+      "question": "Bei der Inspektion der Mundhöhle zeigt sich eine gerötete, geschwollene Gingiva. Welches weitere Inspektionsmerkmal deutet auf eine Gingivitis hin?",
+      "options": {
+        "A": "Glänzende, glatte Gingivaoberfläche mit Verlust der Stippelung",
+        "B": "Blasse, straffe Gingiva mit ausgeprägter Stippelung",
+        "C": "Zurückgezogenes Zahnfleisch mit freiliegenden Zahnhälsen",
+        "D": "Verfärbungen durch Amalgamfüllungen"
+      },
+      "correct": "A",
+      "explanation": "Bei Gingivitis zeigt die Inspektion typischerweise: Rötung (erhöhte Durchblutung), Schwellung (Ödem), Verlust der physiologischen Stippelung, glänzende Oberfläche und aufgelockerte Konsistenz. Die gesunde Gingiva ist blassrosa, straff und zeigt eine charakteristische Stippelung ('Orangenhaut')."
+    },
+    {
+      "id": 5,
+      "question": "Was kann bei der Inspektion auf eine aggressive Verlaufsform der Parodontitis hindeuten?",
+      "options": {
+        "A": "Massive Plaqueablagerungen bei älteren Patienten",
+        "B": "Ausgeprägter Attachmentverlust bei jungen Patienten mit relativ wenig Plaque",
+        "C": "Leichte Gingivitis bei guter Mundhygiene",
+        "D": "Physiologische Pigmentierungen der Gingiva"
+      },
+      "correct": "B",
+      "explanation": "Die aggressive Parodontitis (nach neuer Klassifikation: Parodontitis Stadium III-IV, Grad C) zeigt oft ein Missverhältnis zwischen geringen bakteriellen Belägen und schwerem Destruktionsmuster. Typisch sind: junges Alter (<35 Jahre), schneller Verlauf, familiäre Häufung und bevorzugter Befall von Inzisiven und ersten Molaren."
+    },
+    {
+      "id": 6,
+      "question": "Was bedeutet PSI-Code 0 bei der Befunderhebung?",
+      "options": {
+        "A": "Sondierungstiefen >5,5 mm und Zahnstein vorhanden",
+        "B": "Keine Blutung nach Sondierung, keine Plaque, keine Konkremente, keine Sondierungstiefen >3,5 mm",
+        "C": "Blutung nach Sondierung und Sondierungstiefen 4-5 mm",
+        "D": "Furkationsbefall liegt vor"
+      },
+      "correct": "B",
+      "explanation": "PSI-Code 0 bedeutet parodontal gesund: keine Blutung auf Sondierung (BOP negativ), keine Plaque- oder Zahnsteinablagerungen, Sondierungstiefen ≤3,5 mm, keine pathologischen Taschen. Dies ist der Idealzustand mit intaktem parodontalem Attachment."
+    },
+    {
+      "id": 7,
+      "question": "Ein Sextant zeigt PSI-Code 3. Was bedeutet dies und welche Konsequenz ergibt sich?",
+      "options": {
+        "A": "Gesunder Parodontalstatus, keine Behandlung nötig",
+        "B": "Sondierungstiefen 4-5 mm mit schwarzer Markierung sichtbar, parodontale Basistherapie indiziert",
+        "C": "Sondierungstiefen >6 mm, sofortige chirurgische Therapie erforderlich",
+        "D": "Nur oberflächliche Plaqueentfernung notwendig"
+      },
+      "correct": "B",
+      "explanation": "PSI-Code 3: Sondierungstiefen 4,0-5,5 mm (schwarze Markierung der WHO-Sonde bleibt teilweise sichtbar), meist mit Blutung und Konkrementen. Dies erfordert eine systematische Parodontitistherapie (PAR-Behandlung) mit Antiinfektiöser Therapie (subgingivales Scaling/Root Planing) nach vollständiger parodontaler Befundung."
+    },
+    {
+      "id": 8,
+      "question": "Was ist der Unterschied zwischen PSI-Code 3 und Code 4?",
+      "options": {
+        "A": "Nur die Farbe der verwendeten Sonde",
+        "B": "Code 3: Sondierungstiefen 4-5,5 mm (schwarze Markierung teilweise sichtbar); Code 4: Sondierungstiefen ≥6 mm (schwarze Markierung vollständig in der Tasche)",
+        "C": "Code 3 erfordert Chirurgie, Code 4 nur Mundhygiene",
+        "D": "Es gibt keinen Unterschied"
+      },
+      "correct": "B",
+      "explanation": "Code 3: Pathologische Tasche 4-5,5 mm (schwarzer Ring 3,5-5,5 mm teilweise sichtbar). Code 4: Tiefe Tasche ≥6 mm (schwarzer Ring vollständig in der Tasche verschwunden). Code 4 weist auf eine schwere Parodontitis hin und erfordert nach der systematischen Basistherapie häufig zusätzliche chirurgische oder regenerative Maßnahmen."
+    },
+    {
+      "id": 9,
+      "question": "Welche Sonde wird für den Parodontalen Screening-Index (PSI) verwendet?",
+      "options": {
+        "A": "Eine spitze explorative Sonde ohne Markierung",
+        "B": "WHO-Sonde mit Kugelspitze (0,5 mm) und schwarzer Markierung zwischen 3,5 und 5,5 mm",
+        "C": "Eine gewöhnliche zahnärztliche Pinzette",
+        "D": "Michigan-Sonde mit Millimetermarkierungen"
+      },
+      "correct": "B",
+      "explanation": "Die WHO-Sonde (auch PSI-Sonde) hat eine abgerundete Kugelspitze (0,5 mm Durchmesser) zur schonenden Sondierung und einen schwarzen Ring zwischen 3,5 und 5,5 mm Markierung. Die Kugelspitze verhindert Traumatisierung und falsch-positive Messungen. Der Anpressdruck sollte 20-25 g (0,2-0,25 N) betragen."
+    },
+    {
+      "id": 10,
+      "question": "Was beschreibt die Sondierungstiefe (ST) korrekt?",
+      "options": {
+        "A": "Der Abstand vom Gingivarand bis zur Schmelz-Zement-Grenze",
+        "B": "Der Abstand vom Gingivarand bis zum sondierbaren Taschenboden",
+        "C": "Der Abstand von der Schmelz-Zement-Grenze bis zur Wurzelspitze",
+        "D": "Die Länge der Zahnwurzel"
+      },
+      "correct": "B",
+      "explanation": "Die Sondierungstiefe (ST) ist die Strecke vom Gingivarand (marginale Gingiva) bis zum mit der Parodontalsonde tastbaren Taschenboden. Sie wird in mm gemessen (6 Messpunkte pro Zahn: mesio-bukkal, bukkal, disto-bukkal, mesio-oral, oral, disto-oral). Physiologische Sondierungstiefen liegen bei ≤3 mm. ST allein zeigt nicht den Attachmentverlust, sondern muss mit Rezessionen kombiniert werden."
+    },
+    {
+      "id": 11,
+      "question": "Wie berechnet sich der klinische Attachmentverlust (CAL - Clinical Attachment Loss)?",
+      "options": {
+        "A": "CAL = Sondierungstiefe minus Rezession",
+        "B": "CAL = Sondierungstiefe plus Rezession (bei freiliegender Schmelz-Zement-Grenze)",
+        "C": "CAL = Gingivarand bis Wurzelspitze",
+        "D": "CAL = Kronenbreite geteilt durch 2"
+      },
+      "correct": "B",
+      "explanation": "Der klinische Attachmentverlust (CAL) ist das Ausmaß des Verlusts an parodontalem Attachment gemessen von der Schmelz-Zement-Grenze (SZG). Berechnung: Bei Rezession (SZG sichtbar): CAL = ST + Rezession. Bei überdeckender Gingiva: CAL = ST - Abstand Gingivarand zur SZG. Der CAL ist der wichtigste Parameter zur Beurteilung des Schweregrads einer Parodontitis."
+    },
+    {
+      "id": 12,
+      "question": "Ein Zahn zeigt eine Sondierungstiefe von 5 mm und eine Rezession von 3 mm. Wie groß ist der Attachmentverlust?",
+      "options": {
+        "A": "2 mm",
+        "B": "5 mm",
+        "C": "8 mm",
+        "D": "3 mm"
+      },
+      "correct": "C",
+      "explanation": "Attachmentverlust (CAL) = Sondierungstiefe + Rezession = 5 mm + 3 mm = 8 mm. Die Rezession zeigt, dass die Schmelz-Zement-Grenze freigelegt ist. Der gesamte Attachmentverlust setzt sich zusammen aus der Taschentiefe (5 mm unterhalb des Gingivarands) plus der apikalen Verlagerung des Gingivarands (3 mm Rezession)."
+    },
+    {
+      "id": 13,
+      "question": "Warum ist die Bestimmung des Attachmentverlusts wichtiger als die Sondierungstiefe allein?",
+      "options": {
+        "A": "Der Attachmentverlust ist leichter zu messen",
+        "B": "Der Attachmentverlust zeigt den tatsächlichen Verlust an parodontaler Stützgewebe unabhängig von Gingivawucherungen oder Rezessionen",
+        "C": "Die Sondierungstiefe ist völlig bedeutungslos",
+        "D": "Der Attachmentverlust wird nicht für die Diagnose benötigt"
+      },
+      "correct": "B",
+      "explanation": "Der Attachmentverlust (CAL) ist der Goldstandard zur Beurteilung der parodontalen Destruktion, da er den echten Verlust an Bindegewebsanhaftung darstellt. Die Sondierungstiefe kann durch Gingivahyperplasie (vergrößert) oder Rezession (verkleinert) verfälscht sein. Bei Gingivitis kann die ST erhöht sein ohne Attachmentverlust, während bei Rezession trotz geringer ST erheblicher Attachmentverlust vorliegen kann."
+    },
+    {
+      "id": 14,
+      "question": "Was ist die Hauptindikation für eine Panoramaschichtaufnahme (OPG) in der parodontalen Diagnostik?",
+      "options": {
+        "A": "Erstellung von hochauflösenden Detailaufnahmen einzelner Zähne",
+        "B": "Übersichtsdarstellung des horizontalen und vertikalen Knochenabbaus sowie Screening auf weitere pathologische Befunde",
+        "C": "Beurteilung der exakten Sondierungstiefe",
+        "D": "Messung der Zahnfarbe"
+      },
+      "correct": "B",
+      "explanation": "Das OPG dient als Übersichtsaufnahme zur Erstbeurteilung des Knochen-Abbaumusters (horizontal/vertikal), des Kronen-Wurzel-Verhältnisses, Furkationsbeteiligungen und zum Screening auf weitere Pathologien (Zysten, Retentionen, Wurzelreste). Limitation: Überlagerungen, geringere Detailauflösung, Unterschätzung approximaler Knochendefekte. Für genaue parodontale Diagnostik sind Einzelzahnfilme oder digitale Volumentomographie erforderlich."
+    },
+    {
+      "id": 15,
+      "question": "Welche Röntgentechnik ist am besten geeignet, um interproximale Knochentaschen genau zu beurteilen?",
+      "options": {
+        "A": "Panoramaschichtaufnahme (OPG)",
+        "B": "Einzelzahnfilme (Zahnfilme) mit Rechtwinkeltechnik oder Paralleltechnik",
+        "C": "Schädelröntgen seitlich",
+        "D": "Handgelenksröntgen"
+      },
+      "correct": "B",
+      "explanation": "Einzelzahnfilme in Paralleltechnik sind der Goldstandard für die genaue Beurteilung interproximaler Knochentaschen. Sie bieten höchste Auflösung, minimale Verzerrung und ermöglichen die exakte Beurteilung von Knochenabbaumustern (horizontal/vertikal/angulär), furkationsbefall und Wurzelanatomie. Für einen vollständigen parodontalen Status werden 14-16 Einzelzahnfilme angefertigt (Bissflügel und periapikale Aufnahmen)."
+    },
+    {
+      "id": 16,
+      "question": "Was zeigt ein vertikaler (angularer) Knochenabbau im Röntgenbild an?",
+      "options": {
+        "A": "Gleichmäßigen Abbau auf gleichem Niveau bei allen Zähnen",
+        "B": "Trichterförmigen oder keilförmigen Knochendefekt entlang der Wurzel mit intraalveolärer Komponente",
+        "C": "Völlig gesunden Knochen",
+        "D": "Nur oberflächliche Gingivaentzündung ohne Knochenbeteiligung"
+      },
+      "correct": "B",
+      "explanation": "Vertikaler (angulärer) Knochenabbau zeigt sich als keil- oder trichterförmiger Defekt mit unterschiedlichem Knochenniveau mesial/distal einer Wurzel. Er entsteht durch intraalveoläre Entzündung mit einseitiger Destruktion und ist prognostisch ungünstiger als horizontaler Abbau. Intraalveoläre Komponenten (z.B. 3-wandige Taschen) haben jedoch regeneratives Potenzial bei gesteuerten Geweberegeneration (GTR) oder Schmelzmatrixproteinen (EMD)."
+    },
+    {
+      "id": 17,
+      "question": "Welche Parameter werden im vollständigen Parodontalstatus (Parodontales Screening) NICHT erfasst?",
+      "options": {
+        "A": "Sondierungstiefen an 6 Stellen pro Zahn",
+        "B": "Blutung auf Sondierung (BOP)",
+        "C": "Kariesaktivität und Füllungszustand",
+        "D": "Furkationsbefall und Zahnlockerung"
+      },
+      "correct": "C",
+      "explanation": "Der Parodontalstatus erfasst alle parodontalbezogenen Parameter: Sondierungstiefen (6 Messpunkte/Zahn), Rezessionen, Attachmentverlust, Blutung auf Sondierung, Suppuration, Furkationsbefall (Grad I-III), Zahnlockerung (Grad 0-III), Plaque-Index. Der Kariesstatus und Restaurationszustand werden im Zahnstatus (DMFT-Index, Befunderhebung) separat dokumentiert, sind aber für Gesamtbehandlungsplan relevant."
+    },
+    {
+      "id": 18,
+      "question": "Wann wird ein vollständiger Parodontalstatus erhoben?",
+      "options": {
+        "A": "Nur bei Schmerzpatienten",
+        "B": "Bei PSI-Code 3 oder 4 in mindestens einem Sextanten sowie bei spezifischen parodontalen Fragestellungen",
+        "C": "Niemals, der PSI ist ausreichend",
+        "D": "Nur vor chirurgischen Eingriffen"
+      },
+      "correct": "B",
+      "explanation": "Indikationen für vollständigen Parodontalstatus: PSI-Code 3 oder 4 (Taschen ≥4 mm), PSI-Code * (besondere Befunde wie Furkationsbefall, Mobilität, Rezessionen >3,5 mm), V.a. aggressive Parodontitis, Reevaluation nach Therapie, Recall-Untersuchungen. Der PSI ist ein Screening-Instrument; der detaillierte Status ist Basis für Diagnose, Klassifikation (Stadium/Grad) und Therapieplanung."
+    },
+    {
+      "id": 19,
+      "question": "Was bedeutet ein positiver BOP (Bleeding on Probing)?",
+      "options": {
+        "A": "Zeichen einer akuten gingivalen oder parodontalen Entzündung",
+        "B": "Der Patient hat einen Vitamin-C-Mangel",
+        "C": "Zeichen eines zu hohen Sondierungsdrucks",
+        "D": "Völlig normale Reaktion ohne klinische Bedeutung"
+      },
+      "correct": "A",
+      "explanation": "BOP ist ein zuverlässiger Entzündungsmarker. Positiver BOP (Blutung innerhalb 10-30 Sekunden nach Sondierung) zeigt aktive Entzündung mit erhöhter Gefäßpermeabilität an. Wichtig: Negativer BOP hat hohen negativen prädiktiven Wert (Stabilität), positiver BOP bedeutet nicht automatisch Progression. BOP-Reduktion ist wichtiges Therapieziel; persistierender BOP >25% indiziert Nachbehandlung."
+    },
+    {
+      "id": 20,
+      "question": "Wie wird die BOP-Blutung dokumentiert?",
+      "options": {
+        "A": "In Litern pro Minute",
+        "B": "Als Prozentsatz: Anzahl blutender Stellen dividiert durch Gesamtzahl sondierter Stellen × 100",
+        "C": "Nur als 'ja' oder 'nein' ohne Quantifizierung",
+        "D": "Durch Messung des Hämoglobinwerts"
+      },
+      "correct": "B",
+      "explanation": "BOP wird als Prozentsatz dokumentiert: (Anzahl blutender Stellen / Gesamtzahl sondierter Stellen) × 100. Bei 6-Punkt-Messung: maximal 6 Stellen pro Zahn. Gesund: BOP <10%, akzeptabel nach Therapie: <25%, bei BOP >30% besteht aktive Entzündung und erhöhtes Progressionsrisiko. BOP-Reduktion ist primäres Ziel der antiinfektiösen Therapie und wichtiger Verlaufsparameter."
+    },
+    {
+      "id": 21,
+      "question": "Warum ist ein niedriger BOP-Wert nach Parodontitistherapie prognostisch günstig?",
+      "options": {
+        "A": "Er zeigt erfolgreiche Entzündungskontrolle und stabile parodontale Verhältnisse an",
+        "B": "Er bedeutet, dass keine weiteren Kontrollen nötig sind",
+        "C": "Er hat keine prognostische Bedeutung",
+        "D": "Er zeigt an, dass der Patient nicht mehr putzen muss"
+      },
+      "correct": "A",
+      "explanation": "BOP <10-15% korreliert mit parodontaler Stabilität und geringem Progressionsrisiko. Studien zeigen: bei BOP <25% ist weiterer Attachmentverlust unwahrscheinlich. BOP ist sensitiver Marker für subklinische Entzündung und spricht schneller auf Therapie an als Taschentiefenreduktion. Er ist wichtiger Parameter für Recall-Intervalle: BOP <10% ermöglicht längere Intervalle, BOP >25% erfordert engmaschigere Kontrollen."
+    },
+    {
+      "id": 22,
+      "question": "Was bedeutet Furkationsbefall Grad I?",
+      "options": {
+        "A": "Horizontaler Attachmentverlust <3 mm in die Furkation hinein, Furkation ist sondierbar",
+        "B": "Durchgängige Furkation, Sonde durchdringbar",
+        "C": "Keine Furkationsbeteiligung",
+        "D": "Kompletter Zahnverlust"
+      },
+      "correct": "A",
+      "explanation": "Grad I (Beginnend): Horizontale Sondierung <3 mm in die Furkation, Konkavität tastbar, aber nicht durchgängig. Grad II (Fortgeschritten): Sondierung >3 mm, aber nicht durchgängig. Grad III (Durchgängig): Sonde kann horizontal komplett durchgeführt werden. Befundung mit speziellen Furkationssonden (Nabers-Sonde). Furkationsbefall verschlechtert Prognose erheblich und erfordert oft spezielle Therapien (Tunnelierung, Hemissektion, Prämolarisierung)."
+    },
+    {
+      "id": 23,
+      "question": "Welche Zähne sind typischerweise von Furkationsbeteiligung betroffen?",
+      "options": {
+        "A": "Nur Frontzähne",
+        "B": "Mehrwurzelige Zähne: Oberkiefermolaren (3 Wurzeln) und Unterkiefermolaren (2 Wurzeln), selten UK-Prämolaren",
+        "C": "Alle Zähne gleichmäßig",
+        "D": "Nur Weisheitszähne"
+      },
+      "correct": "B",
+      "explanation": "Furkationsbefall betrifft mehrwurzelige Zähne: Oberkiefermolaren (3 Furkationen: bukkal, mesio-palatal, disto-palatal), Unterkiefermolaren (2 Furkationen: bukkal, lingual), gelegentlich UK-Prämolaren bei Wurzelvarianten. OK-Molaren sind komplexer (3 Wurzeln) und prognostisch ungünstiger. Anatomische Varianten (Wurzelstammhöhe, Einziehungen) beeinflussen Furkationsrisiko. Früherkennung wichtig, da Grad III oft Extraktion erfordert."
+    },
+    {
+      "id": 24,
+      "question": "Was bedeutet Zahnlockerungsgrad II?",
+      "options": {
+        "A": "Keine Lockerung, physiologisch",
+        "B": "Fühlbare, sichtbare horizontale Beweglichkeit >1 mm in vestibulo-oraler und/oder mesio-distaler Richtung",
+        "C": "Zahn ist extrahiert",
+        "D": "Vertikale Beweglichkeit (Intrusion möglich)"
+      },
+      "correct": "B",
+      "explanation": "Lockerungsgrade: Grad 0 = physiologisch (0,1-0,2 mm), Grad I = fühlbar erhöht bis 1 mm horizontal, Grad II = sichtbar >1 mm horizontal, Grad III = horizontale >2 mm plus vertikale Beweglichkeit oder Intrusion möglich. Prüfung mit zwei Instrumenten (Spiegel/Sonde). Ursachen: Attachmentverlust, Trauma, Entzündung, Wurzelresorption. Reversibel bei Entzündung, irreversibel bei Attachmentverlust. Grad III oft Extraktionsindikation."
+    },
+    {
+      "id": 25,
+      "question": "Kann sich eine Zahnlockerung nach parodontaler Therapie wieder verringern?",
+      "options": {
+        "A": "Nein, Lockerung ist immer irreversibel",
+        "B": "Ja, bei entzündungsbedingter Komponente kann durch Abheilung eine Verbesserung um 1 Lockerungsgrad erfolgen",
+        "C": "Ja, aber nur durch sofortige Extraktion",
+        "D": "Lockerungen sind grundsätzlich kein Problem"
+      },
+      "correct": "B",
+      "explanation": "Zahnlockerung hat oft zwei Komponenten: irreversible (Attachmentverlust, Knochenabbau) und reversible (akute Entzündung, Trauma, Überbelastung). Nach erfolgreicher antiinfektiöser Therapie kann die entzündliche Komponente ausheilen und die Lockerung um etwa 1 Grad abnehmen. Die durch Attachmentverlust bedingte Lockerung bleibt bestehen. Zusätzliche Maßnahmen: Okklusionsausgleich, temporäre/permanente Schienung, Reduzierung von Traumatogenie. Prognose abhängig von verbleibendem Attachment (Wurzellänge kritisch)."
+    }
+  ]
+}
